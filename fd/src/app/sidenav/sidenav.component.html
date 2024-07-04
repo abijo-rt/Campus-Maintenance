@@ -3,18 +3,18 @@
   <div class="h-2"></div>
 
   <div class="flex justify-center">
-    <p-button label="+ add Work " [outlined]="true"  [raised]="true" styleClass="btn" [routerLink]="[{ outlets: { mainContent: ['adduser'] } }]">
+    <p-button label="+ add Work " [outlined]="true"  [raised]="true" styleClass="btn" routerLink="/addwork">
     </p-button>
   </div>
 
   <div class="flex justify-center">
     <p-button label="Dash Borad" [outlined]="true"  [raised]="true" styleClass="btn"
-      [routerLink]="[{ outlets: { mainContent: ['dashboard'] } }]"></p-button>
+      routerLink="/dashboard"></p-button>
   </div>
 
   <div class="flex justify-center">
     <p-button label="+ Add Worker" [outlined]="true"  [raised]="true" styleClass="btn"
-    [routerLink]="[{ outlets: { mainContent: ['adduser'] } }]"></p-button>
+    routerLink="/adduser"></p-button>
   </div>
 
   <div class="flex justify-center">
@@ -22,11 +22,11 @@
   </div>
 
   <div class="flex justify-center">
-    <p-button label="Works" [outlined]="true" [raised]="true" styleClass="btn" [routerLink]="[{ outlets: { mainContent: ['works'] } }]"></p-button>
+    <p-button label="Works" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/works"></p-button>
   </div>
 
  <div class="flex justify-center">
-   <p-button label="Worker Details" [outlined]="true" [raised]="true" styleClass="btn" [routerLink]="[{ outlets: { mainContent: ['workerdetails'] } }]"></p-button>
+   <p-button label="Worker Details" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/workerdetails"></p-button>
  </div>
 
 </div>
