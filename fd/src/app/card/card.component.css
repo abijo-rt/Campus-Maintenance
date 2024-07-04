@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+
+  ::ng-deep .loc-btn {
+  
+     max-width: 450px;
+  }
+}

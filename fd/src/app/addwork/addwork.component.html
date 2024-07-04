@@ -1,0 +1,42 @@
+<p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+
+<div class="main overflow-y-auto py-3 relative flex flex-col items-center">
+  <form (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-2 gap-y-8 justify-items-center content-center griddiv">
+      <p-calendar [(ngModel)]="date" [ngModelOptions]="{ standalone: true }" styleClass="calinput" placeholder="Date"
+        [showIcon]="true" [showTime]="false">
+      </p-calendar>
+      <p-dropdown [(ngModel)]="slocation" [ngModelOptions]="{ standalone: true }" [options]="Olocation" optionLabel="name"
+        placeholder="Select a location" styleClass="input" required></p-dropdown>
+      <p-inputNumber inputId="integeronly" [(ngModel)]="taskid" [ngModelOptions]="{ standalone: true }"
+        [useGrouping]="false" styleClass="phoneinput" placeholder="Enter Task ID" required></p-inputNumber>
+      <p-dropdown [(ngModel)]="stype" [ngModelOptions]="{ standalone: true }" [options]="Otype" optionLabel="name"
+        placeholder="Select Type of Work" styleClass="input" required></p-dropdown>
+
+      <p-inputNumber inputId="integeronly" styleClass="phoneinput" placeholder="Status Of Work : Pending "
+        [disabled]="true" required></p-inputNumber>
+
+      <p-inputNumber inputId="numberOfFields" [(ngModel)]="numberOfFields" [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="generateInputFields()" [useGrouping]="false" styleClass="input noofworker"
+        placeholder="Enter Number of Workers" required></p-inputNumber>
+    </div>
+
+    <div class="flex flex-col place-items-center gap-y-8">
+      <div *ngFor="let field of inputFields; let i = index">
+        <p-dropdown 
+          [(ngModel)]="ngoption[i]" 
+          [options]="Oname" 
+          optionLabel="name"
+          name="{{i}}"
+        
+          (onChange)="onFieldChange($event, i)"
+          placeholder="Select Worker {{ i + 1 }}"
+          styleClass="input workerdetails" 
+          required>
+        </p-dropdown>
+      </div>
+
+      <p-button label="Submit" icon="pi pi-check" iconPos="right" type="submit"></p-button>
+    </div>
+  </form>
+</div>

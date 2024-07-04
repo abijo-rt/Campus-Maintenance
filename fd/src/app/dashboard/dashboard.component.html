@@ -1,0 +1,11 @@
+<div>
+  <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+
+  <div id="row1" class="grid grid-rows-1 gap-y-10 m-10  md:grid-cols-4">
+    <div  *ngFor="let card of cards">
+      <app-card [location]="card.location" [pending]="card.pending" [completed]="card.completed"></app-card>
+    </div>
+  </div>
+
+  <!-- <app-chart></app-chart> -->
+</div>

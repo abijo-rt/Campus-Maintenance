@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main{
+    height: 550px;
+    margin: 10px;
+    width: 98%;
+}
+
+:host {
+
+  ::ng-deep .input {
+    padding: .5rem;
+
+    font-size: .9rem;
+    width: 500px;
+    height: 4rem;
+  }
+
+   ::ng-deep .phoneinput {
+     padding: .5rem;
+
+     font-size: .9rem;
+     width: 505px;
+     height: 5rem;
+   }
+
+
+  
+input{
+  width: 500px;
+  height: 4rem;
+  padding-left: 15px;
+  color: #4b5563;
+}
+
+label{
+  font-size: 5;
+}
+
+h1{
+   color: #4b5563;
+}
+
+}

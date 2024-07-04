@@ -1,0 +1,84 @@
+<p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+
+<div class="p-2  ">
+
+  <div class="card w-full  border-1 b rounded-md shadow-xl pl-2">
+    <p-table #dt2 [value]="workerdata" dataKey="id" [rows]="8" [showCurrentPageReport]="true" [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      styleClass="p-datatable-striped p-datatable-lg p-datatable-header" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header" [scrollable]="true">
+        <tr>
+          <th style="min-width:200px ">Worker name</th>
+          <th style="min-width:200px">Worker ID</th>
+          <th style="min-width:200px">Gender</th>
+          <th style="min-width:200px">status </th>
+          <th style="min-width:200px">phone No </th>
+          <th style="min-width:75px">Edit Details </th>
+          <th style="min-width:600px">qualification</th>
+
+
+
+      </ng-template>
+      <ng-template pTemplate="body" let-data >
+        <tr>
+          <td class="border-b-2 border-[black]">{{ data.name}}</td>
+          <td class="border-b-2 border-[black]">{{ data.staffid }}</td>
+          <td class="border-b-2 border-[black]">{{ data.gender }}</td>
+         
+
+          <td class="border-b-2 border-[black]">
+            <p-tag [value]="getStatus(data.status)" [severity]="getSeverity(data.status)"></p-tag>
+          </td>
+           <td class="border-b-2 border-[black]">{{ data.phone }}</td>
+           <td class="border-b-2 border-[black]">
+             <p-button id="data.id" icon="pi pi-pencil" (click)="showDialog(data.staffid)"></p-button>
+           </td>
+          <td class="border-b-2 border-[black]">{{ data.skill }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">No Work found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
+    <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50rem' }"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" styleClass="dialog" >
+      <ng-template pTemplate="header" >
+        
+      </ng-template>
+
+      <div class="dialogdiv grid col-span-2">
+      <p class="m-0">
+       {{editdata?.staffid}}
+      </p>
+
+      <p class="m-0">
+        {{editdata?.name}}
+      </p>
+      <p class="m-0">
+        {{editdata?.status}}
+      </p>
+      <p class="m-0">
+        {{editdata?.phone}}
+      </p>
+      <p class="m-0">
+        {{editdata?.gender}}
+      </p>
+      <p class="m-0">
+        {{editdata?.skill}}
+      </p>
+
+
+       </div>
+
+      <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="visible = false" label="Ok" pAutoFocus [autofocus]="true"></p-button>
+      </ng-template>
+    </p-dialog>
+
+
+</div>

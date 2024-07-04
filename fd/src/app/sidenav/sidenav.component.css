@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+:host {
+ 
+    ::ng-deep .btn{
+        padding: .5rem;
+      
+        font-size: .9rem;
+        width: 250px;
+   }
+}
