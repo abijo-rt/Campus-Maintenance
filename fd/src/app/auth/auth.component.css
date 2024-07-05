@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+ 
+    ::ng-deep .box{
+       
+      
+        width: 550px;
+        
+   }
+  }

@@ -1,1 +1,22 @@
-<p>auth works!</p>
+<div class="main grid place-items-center h-screen bg-fixed " style="background-image: url(../assets/bg.jpg);">
+    <div class=" con  rounded-lg shadow-2xl w-1/2 h-3/4 flex flex-row divide-x-2 justify-stretch"style="background-color: #fbfbfb;">
+        <div class="logo w-1/2 bg-no-repeat bg-left rounded-l-lg" style="background-image: url(../assets/reno2.jpg);"></div>
+        <div class="content flex flex-col w-1/2">
+            <div class="title h-32   w-full grid place-items-center" ><p class="font-mono text-4xl ">Campus Maintence</p></div>
+            <div class="title h-10   w-full grid place-items-center" ><p class="font-mono text-3xl ">LOGIN</p></div>
+            <div class="body h-3/4 flex  flex-col items-center justify-center space-y-12 w-full">
+                <p-floatLabel class="">
+                    <input pInputText id="username" [(ngModel)]="value" class="border-2 h-14 w-80" />
+                    <label for="username">Username</label>
+                </p-floatLabel>
+                <p-floatLabel>
+                    <input pInputText id="username" [(ngModel)]="value" class="border-2 h-14 w-80"/>
+                    <label for="password">Password</label>
+                </p-floatLabel>
+
+                <p-button label="Login" severity="secondary" />
+            </div>
+        </div>
+        
+    </div>
+</div>

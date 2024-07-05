@@ -6,3 +6,13 @@ h2 {
   font-weight: 600 !important;
   color: rgb(59, 130, 246);
 }
+
+:host {
+ 
+  ::ng-deep .icon{
+     
+    
+      font-size: 1rem;
+      
+ }
+}
