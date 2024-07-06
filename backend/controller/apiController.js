@@ -135,9 +135,6 @@ exports.editwork = async (req, res) => {
         const data = req.body;
         const date = req.body.date;
         const location = req.body.location;
-        // console.log('Data to update:', data);
-
-        // Ensure you correctly identify the document to update
         const result = await Worklog.findOneAndUpdate({ taskid: id }, data, { new: true });
         console.log('restult', result);
 
@@ -162,7 +159,7 @@ exports.editwork = async (req, res) => {
         res.status(200).json({status:200, message: 'Data updated successfully', data: result });
     } catch (error) {
         console.error('Error updating worker details:', error);
-        res.status(500).json({ error: 'Error updating worker details' });
+        res.status(500).json({ error: 'Error updating worker details ffffffff' });
     }
 };
 

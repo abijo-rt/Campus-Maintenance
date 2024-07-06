@@ -14,6 +14,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../.serive/api.service';
 import { ToastModule } from 'primeng/toast';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-work',
@@ -51,9 +52,16 @@ showDialog(inputElement: number) {
     if (this.editdata && this.editdata.taskid !== undefined) {
       console.log(this.editdata)
       
-      this.apiservice.editwork(this.editdata).subscribe((response :any) => {
+      this.apiservice.editwork(this.editdata).pipe(
+        catchError((error: any) => {
+         this.showMsg(500)
+          return throwError(() => error);  // Re-throw the error
+        })
+      ).subscribe((response :any) => {
+        this.showMsg(response.status)
         console.log('Data updated successfully:', response.status);
         if((this.editdata!== undefined)&& response.status==200){
+          
 this.editdata.status=true;
         }
         
@@ -61,7 +69,7 @@ this.editdata.status=true;
       this.visible = false;
     }
 
-    this.show()
+    
   }
 
 
@@ -144,9 +152,17 @@ this.editdata.status=true;
     }
   }
 
-  show():void{
-    
-    this.message.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+  showMsg(status:number):void{
+    switch (status) {
+      case 200:
+        this.message.add({ severity: 'success', summary: 'Success', detail: 'Worker Details Upadated' });
+        break;
+      case 500:
+          this.message.add({ severity: 'error', summary: 'failed', detail: 'Can not update worker Details' });
+          break;
+      default:
+        break;
+    }
   }
 }
 

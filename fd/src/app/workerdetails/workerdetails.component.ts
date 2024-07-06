@@ -43,7 +43,7 @@ export class WorkerdetailsComponent {
 
 okclick() {
   this.visible = false;
-  this.show()
+  this.showMsg(400)
 }
 
   constructor(
@@ -112,8 +112,17 @@ okclick() {
   }
 
 
-show():void{
-  
-  this.message.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+showMsg(status:number):void{
+  switch (status) {
+    case 200:
+      this.message.add({ severity: 'success', summary: 'Success', detail: 'Worker Details Upadated' });
+      break;
+    case 400:
+        this.message.add({ severity: 'error', summary: 'failed', detail: 'Can not update worker Details' });
+        break;
+    default:
+      break;
+  }
 }
+
 }
