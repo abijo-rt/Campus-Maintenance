@@ -97,8 +97,16 @@ console.log(formdata)
     ];
     
     this.activeItem = { label: 'Add Worker' };
-    this.items = [{ label: 'Add Worker' }];
-    this.activeItem = this.items[0];
+    this.items = [
+      { label: 'Dash Board', routerLink: '/dashboard' },
+      { label: '+ New Work', routerLink: '/addwork' },
+      { label: '+ New Worker', routerLink: '/adduser' },
+      { label: 'Work Log', routerLink: '/works' },
+      { label: 'Worker Details', routerLink: '/workerdetails' },
+      { label: 'Settings', routerLink: '/settings' },
+  
+    ];
+    
     this.gender = [{ name: 'male' }, { name: 'female' }];
 
     this.form = new FormGroup({

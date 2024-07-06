@@ -29,9 +29,19 @@ export class DashboardComponent {
 
 
 activeItem: MenuItem = { label: 'Dash Board' };
-items: MenuItem[] =[{ label: 'Dash Board' }];
+items: MenuItem[] | undefined;
 
- ngOnInit() {
+
+ngOnInit() {
+   this.items = [
+     { label: 'Dash Board', routerLink: '/dashboard' },
+     { label: '+ New Work', routerLink: '/addwork' },
+     { label: '+ New Worker', routerLink: '/adduser' },
+     { label: 'Work Log', routerLink: '/works' },
+     { label: 'Worker Details', routerLink: '/workerdetails' },
+     { label: 'Settings', routerLink: '/settings' },
+   
+   ];
 
   this.apiservice.getcardinfo().subscribe((workdata) => {
     console.log(workdata)

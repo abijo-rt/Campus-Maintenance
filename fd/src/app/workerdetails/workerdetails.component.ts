@@ -75,9 +75,16 @@ export class WorkerdetailsComponent {
 
   ngOnInit() {
     this.activeItem = { label: 'Worker Details' };
-    this.items = [{ label: 'Worker Details' }];
-    this.activeItem = this.items[0];
+    this.items = [
+      { label: 'Dash Board', routerLink: '/dashboard' },
+      { label: '+ New Work', routerLink: '/addwork' },
+      { label: '+ New Worker', routerLink: '/adduser' },
+      { label: 'Work Log', routerLink: '/works' },
+      { label: 'Worker Details', routerLink: '/workerdetails' },
+      { label: 'Settings', routerLink: '/settings' },
 
+    ];
+    
     this.apiservice.getWorkerDetails().subscribe((data) => {
    //   console.log(data); 
       if (data) {

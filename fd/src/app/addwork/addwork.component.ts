@@ -38,7 +38,16 @@ interface Option {
 })
 export class AddworkComponent implements OnInit {
   activeItem: MenuItem = { label: 'New Work' };
-  items: MenuItem[] = [{ label: 'New Work' }];
+  
+  items = [
+    { label: 'Dash Board', routerLink: '/dashboard' },
+    { label: '+ New Work', routerLink: '/addwork' },
+    { label: '+ New Worker', routerLink: '/adduser' },
+    { label: 'Work Log', routerLink: '/works' },
+    { label: 'Worker Details', routerLink: '/workerdetails' },
+    { label: 'Settings', routerLink: '/settings' },
+
+  ];
   workdata!: worklog;
   ngoption:options[] =[];
   Olocation: options[] | undefined;

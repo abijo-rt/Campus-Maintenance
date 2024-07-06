@@ -8,6 +8,7 @@ import { WorkerdetailsComponent } from './workerdetails/workerdetails.component'
 import { CardComponent } from './card/card.component';
 import { AuthComponent } from './auth/auth.component';
 import { LayoutComponent } from './layout/layout.component';
+import { SettingComponent } from './setting/setting.component';
 
 export const routes: Routes = [
   // { 
@@ -28,7 +29,9 @@ export const routes: Routes = [
       { path: 'edituser', component: CardComponent },
       { path: 'addwork', component: AddworkComponent },
       { path: 'workerdetails', component: WorkerdetailsComponent },
-      { path: 'editworker', component: EditworkerComponent  }
+      { path: 'editworker', component: EditworkerComponent  },
+      { path: 'settings', component: SettingComponent  }
+
     // ]
 //   },
 //   // { path: '', redirectTo: '/auth', pathMatch: 'full' },
