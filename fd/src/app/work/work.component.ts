@@ -1,5 +1,5 @@
 import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { FilterMatchMode, MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { DividerModule } from 'primeng/divider';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { PaginatorModule } from 'primeng/paginator';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../.serive/api.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-work',
@@ -29,6 +30,7 @@ import { ApiService } from '../.serive/api.service';
     TagModule,
     DropdownModule,
     FormsModule,
+    ToastModule
   ],
   templateUrl: './work.component.html',
   styleUrl: './work.component.css',
@@ -58,6 +60,8 @@ this.editdata.status=true;
     });
       this.visible = false;
     }
+
+    this.show()
   }
 
 
@@ -71,18 +75,13 @@ this.editdata.status=true;
 
   constructor(
     private productServiceService: ProductServiceService,
-    private apiservice: ApiService
+    private apiservice: ApiService,
+    private message:MessageService,
   ) { }
-  ngOnInit() {
-    this.items = [
-      { label: 'Dash Board', routerLink: '/dashboard' },
-      { label: '+ New Work', routerLink: '/addwork' },
-      { label: '+ New Worker', routerLink: '/adduser' },
-      { label: 'Work Log', routerLink: '/works' },
-      { label: 'Worker Details', routerLink: '/workerdetails' },
-      { label: 'Settings', routerLink: '/settings' },
 
-    ];
+  ngOnInit() {
+    this.items=this.productServiceService.getMenuItem()
+
 
 
     this.apiservice.getworklog().subscribe((workdata: worklog[]) => {
@@ -143,6 +142,11 @@ this.editdata.status=true;
       case undefined:
       return undefined  ;
     }
+  }
+
+  show():void{
+    
+    this.message.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
   }
 }
 

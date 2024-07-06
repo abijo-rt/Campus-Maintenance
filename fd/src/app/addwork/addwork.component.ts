@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { TabMenuModule } from 'primeng/tabmenu';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
 import { ApiService } from '../.serive/api.service';
 import { ProductServiceService, worklog, options } from '../.serive/product-service.service';
@@ -22,6 +23,7 @@ interface Option {
   selector: 'app-addwork',
   standalone: true,
   imports: [
+    ToastModule,
     TabMenuModule,
     FormsModule,
     TagModule,
@@ -38,16 +40,8 @@ interface Option {
 })
 export class AddworkComponent implements OnInit {
   activeItem: MenuItem = { label: 'New Work' };
-  
-  items = [
-    { label: 'Dash Board', routerLink: '/dashboard' },
-    { label: '+ New Work', routerLink: '/addwork' },
-    { label: '+ New Worker', routerLink: '/adduser' },
-    { label: 'Work Log', routerLink: '/works' },
-    { label: 'Worker Details', routerLink: '/workerdetails' },
-    { label: 'Settings', routerLink: '/settings' },
+  items=this.productServiceService.getMenuItem()
 
-  ];
   workdata!: worklog;
   ngoption:options[] =[];
   Olocation: options[] | undefined;
@@ -62,7 +56,7 @@ export class AddworkComponent implements OnInit {
   inputFields: string[] = [];
   formdata!: worklog | undefined;
   
-  constructor(private apiservice: ApiService, private productServiceService: ProductServiceService) { }
+  constructor(private apiservice: ApiService, private productServiceService: ProductServiceService,private message: MessageService,) { }
   
   ngOnInit() {
     this.Olocation = this.productServiceService.getOlocation();
@@ -80,6 +74,8 @@ export class AddworkComponent implements OnInit {
   }
 
   onSubmit() {
+this.show()
+    
     if (this.validateForm()) {
       this.workdata = this.getformdata();
       console.log('Form Data:', this.workdata); // Accessing the values
@@ -140,5 +136,10 @@ export class AddworkComponent implements OnInit {
    
 
     return this.formdata;
+  }
+
+
+  show():void{
+    this.message.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
   }
 }

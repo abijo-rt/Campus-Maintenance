@@ -3,7 +3,7 @@
 <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
 
 <div class=" main  ">
-
+ 
 <form [formGroup]="form" class="h-full" (ngSubmit)="onSubmit()">
    
     <div class="flex flex-col  items-center  gap-y-5 p-6">
@@ -30,9 +30,9 @@
    <p-inputNumber inputId="integeronly" formControlName="phoneno" [useGrouping]="false" styleClass="phoneinput"
      placeholder="Enter Phone NO " required>
    </p-inputNumber>
-<p-toast></p-toast>
+<p-toast/>
 
-   <p-button type="submit" label="Submit" [raised]="true" [loading]="loading"  icon=" pi pi-check"
+   <p-button pRipple  type="submit" label="Submit" [raised]="true" [loading]="loading"  icon=" pi pi-check"
      iconPos="right">
    </p-button>
 </div>

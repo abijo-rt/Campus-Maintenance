@@ -33,15 +33,8 @@ items: MenuItem[] | undefined;
 
 
 ngOnInit() {
-   this.items = [
-     { label: 'Dash Board', routerLink: '/dashboard' },
-     { label: '+ New Work', routerLink: '/addwork' },
-     { label: '+ New Worker', routerLink: '/adduser' },
-     { label: 'Work Log', routerLink: '/works' },
-     { label: 'Worker Details', routerLink: '/workerdetails' },
-     { label: 'Settings', routerLink: '/settings' },
-   
-   ];
+  this.items=this.productServiceService.getMenuItem()
+
 
   this.apiservice.getcardinfo().subscribe((workdata) => {
     console.log(workdata)

@@ -31,6 +31,7 @@
           </td>
            <td class="border-b-2 border-[black]">{{ data.phone }}</td>
            <td class="border-b-2 border-[black]">
+            <p-toast></p-toast>
              <p-button id="data.id" icon="pi pi-pencil" (click)="showDialog(data.staffid)"></p-button>
            </td>
           <td class="border-b-2 border-[black]">{{ data.skill }}</td>
@@ -76,7 +77,8 @@
        </div>
 
       <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="visible = false" label="Ok" pAutoFocus [autofocus]="true"></p-button>
+        
+        <p-button icon="pi pi-check" (click)="okclick()" label="Ok" pAutoFocus [autofocus]="true"></p-button>
       </ng-template>
     </p-dialog>
 

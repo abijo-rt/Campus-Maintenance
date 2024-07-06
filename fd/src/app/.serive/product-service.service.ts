@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface worklog {
@@ -95,6 +96,19 @@ private Otype: options[] =[
   { label: 'Plumbing', value: 'Plumbing' },
 ];
 
+private menuItems:MenuItem[]=[
+  
+    { label: 'Dash Board', routerLink: '/dashboard', icon: 'pi pi-chart-bar'  },
+    { label: 'New Work', routerLink: '/addwork', icon:'pi pi-calendar-plus'  },
+    { label: 'New Worker', routerLink: '/adduser' ,icon:'pi pi-user-plus'},
+    { label: 'Work Log', routerLink: '/works' ,icon:'pi pi-book'},
+    { label: 'Worker Details', routerLink: '/workerdetails',icon:'pi pi-address-book' },
+    { label: 'Settings', routerLink: '/settings', icon: 'pi pi-fw pi-cog' },
+
+]
+getMenuItem():MenuItem[]{
+return this.menuItems;
+}
 
 getCate(): type[] {
   return this.Category;
@@ -118,6 +132,7 @@ public visibility$: Observable<boolean> = this.visibilitySubject.asObservable();
 toggleVisibility() {
   this.visibilitySubject.next(!this.visibilitySubject.value);
 }
+
 
 
 }
