@@ -1,11 +1,6 @@
-<div class=" flex-col space-y-7 place-content-evenly h-100 hidden md:block">
-
-  <div class="h-2"></div>
-
-  <div class="flex justify-center">
-    <p-button label="+ add Work " [outlined]="true"  [raised]="true" styleClass="btn" routerLink="/addwork">
-    </p-button>
-  </div>
+<div class=" flex-col space-y-7 place-content-evenly h-100 " >
+  
+   <div class="h-8 flex justify-center "></div> 
 
   <div class="flex justify-center">
     <p-button label="Dash Borad" [outlined]="true"  [raised]="true" styleClass="btn"
@@ -13,20 +8,30 @@
   </div>
 
   <div class="flex justify-center">
+    <p-button label="+ add Work " [outlined]="true"  [raised]="true" styleClass="btn" routerLink="/addwork">
+    </p-button>
+  </div>
+
+
+  <div class="flex justify-center">
     <p-button label="+ Add Worker" [outlined]="true"  [raised]="true" styleClass="btn"
     routerLink="/adduser"></p-button>
   </div>
 
-  <div class="flex justify-center">
-    <p-button label="card " [outlined]="true" [raised]="true" styleClass="btn" routerLink="/adduser"></p-button>
-  </div>
-
+  
   <div class="flex justify-center">
     <p-button label="Works" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/works"></p-button>
   </div>
-
- <div class="flex justify-center">
-   <p-button label="Worker Details" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/workerdetails"></p-button>
- </div>
+  
+  <div class="flex justify-center">
+    <p-button label="Worker Details" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/workerdetails"></p-button>
+  </div>
+  
+  <div class="flex justify-center flex-col">
+    <span class="sm:inline"> <p-button label="Settings " [outlined]="true" [raised]="true" styleClass="btn" routerLink="/adduser"></p-button></span>
+    <!-- <span class=" sm:hidden flex justify-center">
+      <p-button icon="pi pi-cog" />
+    </span> -->
+  </div>
 
 </div>

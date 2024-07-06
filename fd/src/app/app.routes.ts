@@ -21,6 +21,7 @@ export const routes: Routes = [
     // path: 'main', 
     // component: LayoutComponent,
     // children: [
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, 
       { path: 'dashboard', component: DashboardComponent },
       { path: 'adduser', component: AdduserComponent  },
       { path: 'works', component: WorkComponent  },

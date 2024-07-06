@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface worklog {
   date:String,
@@ -110,6 +111,13 @@ getOtype():options[]{
   return this.Otype
 }
 
+
+private visibilitySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+public visibility$: Observable<boolean> = this.visibilitySubject.asObservable();
+
+toggleVisibility() {
+  this.visibilitySubject.next(!this.visibilitySubject.value);
+}
 
 
 }

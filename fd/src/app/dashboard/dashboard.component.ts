@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChartComponent } from '../chart/chart.component';
 import { LayoutComponent } from '../layout/layout.component';
 import { ChipModule } from 'primeng/chip';
@@ -20,6 +20,9 @@ import { CommonModule } from '@angular/common';
 })
 
 export class DashboardComponent {
+  @ViewChild('logoDiv') logoDiv!: ElementRef;
+
+
  cards!:Cardinfo[];
   constructor(private productServiceService: ProductServiceService,private apiservice :ApiService){}
 
@@ -32,7 +35,6 @@ items: MenuItem[] =[{ label: 'Dash Board' }];
 
   this.apiservice.getcardinfo().subscribe((workdata) => {
     console.log(workdata)
-    //const workerLocations = workdata.map(worker => worker.location[0]);
     if (workdata) {
       this.cards = workdata.location.map((data :Cardinfo ) => ({
        location:data.location,
@@ -41,17 +43,22 @@ completed:data.completed
       }))
 
     } else {
+      this.displaylogo()
       console.error(
         'Received null or undefined data from getWorkerDetails()'
       );
     }
   });
 
-
-//his.cards=this.productServiceService.getcardinfo();
+console.log("hihi"+this.cards)
       
 
         this.activeItem = this.items[0];
     }
+
+displaylogo():void{
+  const div = this.logoDiv.nativeElement as HTMLElement;
+  div.style.display='block';
+}
 
 }
