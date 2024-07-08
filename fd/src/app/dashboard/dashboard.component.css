@@ -7,3 +7,15 @@
     width: 600px;
     height: 500px;
 }
+
+::ng-deep .calinput input {
+    font-size: 1rem;
+    width: 250px;
+    height: 4rem;
+  }
+  
+
+  ::ng-deep .calinput {
+    
+    margin: 20px;
+  }

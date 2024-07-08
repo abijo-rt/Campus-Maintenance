@@ -14,14 +14,10 @@
     <label for="username">Username</label>
 
 </span> 
-  
-
-
  <p-multiSelect [options]="work" formControlName="selectedwork" optionLabel="name" placeholder="Select work"
    styleClass="input" required>
     </p-multiSelect>
-    
-    
+
         <p-dropdown formControlName="selectedgender" [options]="gender" optionLabel="name" placeholder="Select a gender"
           styleClass="input" required>
         </p-dropdown>
@@ -32,7 +28,7 @@
    </p-inputNumber>
 <p-toast/>
 
-   <p-button pRipple  type="submit" label="Submit" [raised]="true" [loading]="loading"  icon=" pi pi-check"
+   <p-button pRipple [loading]="loading" type="submit" label="Submit" [raised]="true" [loading]="loading"  icon=" pi pi-check"
      iconPos="right">
    </p-button>
 </div>

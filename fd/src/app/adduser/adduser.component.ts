@@ -64,7 +64,8 @@ export class AdduserComponent {
  
 
 onSubmit(){
-this.show()
+  this.loading=true;
+this.show();
 
   let formdata :StaffDetails = {
     name: this.form.value.name,
@@ -78,7 +79,7 @@ this.show()
 console.log(formdata)
   this.apiservice
     .addstaff(formdata)
-    .subscribe((response) => console.log(response));
+    .subscribe((response) => console.log(response.status));
   
 }
 
@@ -101,15 +102,7 @@ show():void{
     
     this.activeItem = { label: 'Add Worker' };
     this.items=this.productservice.getMenuItem()
-    // this.items = [
-    //   { label: 'Dash Board', routerLink: '/dashboard' },
-    //   { label: '+ New Work', routerLink: '/addwork' },
-    //   { label: '+ New Worker', routerLink: '/adduser' },
-    //   { label: 'Work Log', routerLink: '/works' },
-    //   { label: 'Worker Details', routerLink: '/workerdetails' },
-    //   { label: 'Settings', routerLink: '/settings' },
-  
-    // ];
+   
     
     this.gender = [{ name: 'male' }, { name: 'female' }];
 

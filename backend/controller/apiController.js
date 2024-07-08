@@ -73,7 +73,7 @@ exports.addStaff = async (req, res) => {
         console.log('Staff data saved successfully:', savedStaff);
 
         const response = { message: 'Staff data received and saved successfully' };
-        res.json(response);
+        res.status(200).json(response);
     } catch (error) {
         console.error('Error saving staff data:', error);
         res.status(500).json({ error: error.message });
@@ -81,11 +81,11 @@ exports.addStaff = async (req, res) => {
 };
 
 exports.getWorkData = async (req, res) => {
-
+    const querydate=req.query.date
     try {
-        const workData = await Worklog.find();
+        console.log("workData ==>"+ querydate);
+        const workData = await Worklog.find({date:querydate});
         console.log(workData);
-        console.log("workData >>>");
         res.json(workData);
     } catch (error) {
         console.error('Error fetching work data:', error);
@@ -95,10 +95,11 @@ exports.getWorkData = async (req, res) => {
 };
 
 exports.getWorkerDetails = async (req, res) => {
+  
     try {
         const workerDetails = await WorkerDetails.find();
-        console.log(workerDetails);
         console.log("WORKER DETAILS >>>")
+        console.log(workerDetails);
         res.json(workerDetails);
     } catch (error) {
         console.error('Error fetching worker details:', error);
@@ -148,7 +149,22 @@ exports.editwork = async (req, res) => {
                 console.log("incarementing pennign work")
                 const locationIndex = workinfo.location.findIndex(loc => loc.location === locationName);
                 workinfo.location[locationIndex].completed += 1;
+                workinfo.location[locationIndex].pending -= 1;
                 await workinfo.save();
+
+
+                console.log("task ID "+id)
+                const updatedDocument = await Worklog.findOneAndUpdate(
+                    { taskid:id }, // Query criteria
+                    { $set: { status: true } }, // Update operation
+                    { new: true } // Return the updated document
+                  );
+              
+                  if (updatedDocument) {
+                    console.log('Document updated successfully:', updatedDocument);
+                  } else {
+                    console.log('No document found with the given Task ID');
+                  }
             }
 
         }
@@ -164,18 +180,20 @@ exports.editwork = async (req, res) => {
 };
 
 exports.getcard = async (req, res) => {
-    const date = new Date();
+   const date = new Date();
+     const querydate = (req.query.date)
+
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
     const year = date.getFullYear();
     const currdate = `${day}-${month}-${year}`;
 
-
     try {
         console.log("request recived")
-        console.log(currdate)
+        console.log("Query date "+ typeof querydate)
+        console.log("current date" + currdate)
 
-        const cardinfo = await Workinfo.findOne({ date: currdate }, 'location -_id');
+        const cardinfo = await Workinfo.findOne({ date: querydate }, 'location -_id');
         console.log(cardinfo)
         res.json(cardinfo);
     } catch { }

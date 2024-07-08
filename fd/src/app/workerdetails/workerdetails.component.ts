@@ -15,10 +15,18 @@ import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
 import { PaginatorModule } from 'primeng/paginator';
 import { FormsModule } from '@angular/forms';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 import { ApiService } from '../.serive/api.service';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
+
+interface gender{
+  name:string;
+}
+
+interface work {
+  name: string;
+}
 
 @Component({
   selector: 'app-workerdetails',
@@ -35,42 +43,51 @@ import { CommonModule } from '@angular/common';
     PaginatorModule,
     DialogModule,
     FormsModule,
+    MultiSelectModule
   ],
   templateUrl: './workerdetails.component.html',
   styleUrl: './workerdetails.component.css',
 })
+
+
+
 export class WorkerdetailsComponent {
+reset() {
+throw new Error('Method not implemented.');
+}
+gender: gender[] | undefined;
+work: work[] | undefined;
 
 okclick() {
   this.visible = false;
   this.showMsg(400)
 }
 
-  constructor(
-    private productServiceService: ProductServiceService,
+constructor(
+  private productServiceService: ProductServiceService,
     private apiservice: ApiService,
     private message:MessageService,
   ) {}
-
+  
   editdata: details | undefined;
-
+  
   showDialog(inputElement: number) {
-
+    
     this.editdata = this.workerdata.find(
       (element) => element.staffid == inputElement
     );
     this.visible = true;
     console.log(this.editdata);
   }
-
+  
   visible: boolean = false;
   getSeverity(status: boolean): string | undefined {
     switch (status) {
       case true:
         return 'success';
-      case false:
-        return 'danger';
-    }
+        case false:
+          return 'danger';
+        }
   }
 
   getStatus(status: boolean): string | undefined {
@@ -84,14 +101,23 @@ okclick() {
   activeItem: MenuItem | undefined;
   items: MenuItem[] | undefined;
   workerdata!: details[];
-
+  
   ngOnInit() {
     this.activeItem = { label: 'Worker Details' };
     this.items=this.productServiceService.getMenuItem()
 
+    this.gender = [{ name: 'male' }, { name: 'female' }];
     
+    this.work = [
+      { name: 'Mason' },
+      { name: 'Welding' },
+      { name: 'plumbing' },
+      { name: 'Wiring' },
+      { name: 'Palining' },
+    ];
+
     this.apiservice.getWorkerDetails().subscribe((data) => {
-   //   console.log(data); 
+      
       if (data) {
         this.workerdata = data.map((worker) => ({
           name: worker.name,

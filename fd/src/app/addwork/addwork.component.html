@@ -8,9 +8,11 @@
       </p-calendar>
       <p-dropdown [(ngModel)]="slocation" [ngModelOptions]="{ standalone: true }" [options]="Olocation" optionLabel="name"
         placeholder="Select a location" styleClass="input" required></p-dropdown>
-      <p-inputNumber inputId="integeronly" [(ngModel)]="taskid" [ngModelOptions]="{ standalone: true }"
+
+      <p-inputNumber inputId="integeronly" [disabled]="true" [(ngModel)]="taskid"  [ngModelOptions]="{ standalone: true }"
         [useGrouping]="false" styleClass="phoneinput" placeholder="Enter Task ID" required></p-inputNumber>
-      <p-dropdown [(ngModel)]="stype" [ngModelOptions]="{ standalone: true }" [options]="Otype" optionLabel="name"
+
+      <p-dropdown [(ngModel)]="stype"  [ngModelOptions]="{ standalone: true }" [options]="Otype" optionLabel="name"
         placeholder="Select Type of Work" styleClass="input" required></p-dropdown>
 
       <p-inputNumber inputId="integeronly" styleClass="phoneinput" placeholder="Status Of Work : Pending "

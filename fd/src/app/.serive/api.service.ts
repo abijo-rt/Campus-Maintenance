@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import {
   ProductServiceService,
@@ -37,7 +37,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  addstaff(staff: StaffDetails): Observable<string> {
+  addstaff(staff: StaffDetails): Observable<any> {
     return this.http
       .post<string>('http://localhost:3000/staff', staff, this.httpOptions)
       .pipe(catchError(this.handleError));
@@ -55,8 +55,9 @@ export class ApiService {
   }
 
 
-  getworklog() {
-    return this.http.get<any[]>('http://localhost:3000/worklog');
+  getworklog(strdate:string) {
+    const date=new HttpParams().set('date',strdate)
+    return this.http.get<any[]>('http://localhost:3000/worklog/',{params:date});
   }
 
   editwork(data: worklog): Observable<any> {
@@ -65,11 +66,17 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  getcardinfo() {
-    return this.http.get<any>('http://localhost:3000/cardinfo')
+  
+  getcardinfo(strdate:string) {
+  let para=new HttpParams().set('date',strdate);
+    return this.http.get<any>('http://localhost:3000/cardinfo',{params:para})
   }
 
-
+  // getcardinfo() {
+   
+  //     return this.http.get<any>('http://localhost:3000/cardinfo')
+  //   }
+  
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
