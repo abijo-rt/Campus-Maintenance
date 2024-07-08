@@ -4,13 +4,7 @@
 
 :host {
 
-  ::ng-deep .breadcrumb {
-    border-radius: 0;
-    width: inherit;
-    border: none;
-    padding: 20px;
-
-  }
+  
 
   ::ng-deep .dialog {
    height: 60rem;
@@ -29,4 +23,10 @@
 
 th {
   background-color: white;
+}
+
+
+.edittable {
+  border: 1px solid black;
+  border-collapse: collapse;
 }

@@ -2,15 +2,15 @@
   <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
 
 </div>
-
+<p-toast></p-toast>
 
 
 <div class="p-2  ">
 
-  <div class="card w-full  border-1 b rounded-md shadow-xl pl-2">
+  <div class="card w-full #table border-1 b rounded-md shadow-xl pl-2">
     <p-table #dt2 [value]="products" dataKey="id" [rows]="8" [showCurrentPageReport]="true" [paginator]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      styleClass="p-datatable-striped p-datatable-lg p-datatable-header" [tableStyle]="{ 'min-width': '50rem' }">
+      styleClass="p-datatable-striped p-datatable-lg p-datatable-header " [tableStyle]="{ 'min-width': '50rem' }" [tableStyleClass]="'custom-table'" >
       <ng-template pTemplate="header" [scrollable]="true">
         <tr >
 
@@ -20,11 +20,14 @@
           <th style="min-width:200px">Category</th>
           <th style="min-width:200px">Worker Count</th>
           <th style="min-width:200px">status</th>
-          <th style="min-width:500px">Work Details</th>
+          <th style="min-width:200px">Work Details</th>
           <th style="min-width:300px">remarks</th>
 
         <tr >
-          <th class="border-y-2"></th>
+    <th class="border-y-2">
+    <p-calendar [(ngModel)]="date" (onSelect)="selectdate()" styleClass="calinput"[showTime]="false" [appendTo]="dt2"> </p-calendar>
+
+    </th>
 
           <th class="border-y-2">
             <p-columnFilter type="text" field="taskid" placeholder="task id" styleClass="btn"></p-columnFilter>
@@ -64,7 +67,7 @@
           <th class="border-y-2">
             <p-columnFilter type="text" field="workerDetails" placeholder="workers" styleClass="btn"></p-columnFilter>
           </th>
-          <th class="border-y-1"></th>
+          <th class="border-y-2"></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
@@ -125,6 +128,8 @@
 
 
 <ng-template pTemplate="footer">
+  
   <p-button icon="pi pi-check" (click)="oneditdata()" label="Ok" pAutoFocus [autofocus]="true"></p-button>
 </ng-template>
 </p-dialog>
+

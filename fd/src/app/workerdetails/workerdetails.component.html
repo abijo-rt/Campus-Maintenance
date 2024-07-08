@@ -8,12 +8,12 @@
       styleClass="p-datatable-striped p-datatable-lg p-datatable-header" [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header" [scrollable]="true">
         <tr>
+          <th style="min-width:75px">Edit Details </th>
           <th style="min-width:200px ">Worker name</th>
           <th style="min-width:200px">Worker ID</th>
           <th style="min-width:200px">Gender</th>
           <th style="min-width:200px">status </th>
           <th style="min-width:200px">phone No </th>
-          <th style="min-width:75px">Edit Details </th>
           <th style="min-width:600px">qualification</th>
 
 
@@ -21,6 +21,10 @@
       </ng-template>
       <ng-template pTemplate="body" let-data >
         <tr>
+          <td class="border-b-2 border-[black]">
+            <p-toast></p-toast>
+             <p-button id="data.id" icon="pi pi-pencil" (click)="showDialog(data.staffid)"></p-button>
+           </td>
           <td class="border-b-2 border-[black]">{{ data.name}}</td>
           <td class="border-b-2 border-[black]">{{ data.staffid }}</td>
           <td class="border-b-2 border-[black]">{{ data.gender }}</td>
@@ -30,9 +34,7 @@
             <p-tag [value]="getStatus(data.status)" [severity]="getSeverity(data.status)"></p-tag>
           </td>
            <td class="border-b-2 border-[black]">{{ data.phone }}</td>
-           <td class="border-b-2 border-[black]">
-             <p-button id="data.id" icon="pi pi-pencil" (click)="showDialog(data.staffid)"></p-button>
-           </td>
+        
           <td class="border-b-2 border-[black]">{{ data.skill }}</td>
         </tr>
       </ng-template>
@@ -48,35 +50,41 @@
     <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50rem' }"
       [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" styleClass="dialog" >
       <ng-template pTemplate="header" >
-        
+        <p class="text-xl">Edit Worker Information</p>
       </ng-template>
 
-      <div class="dialogdiv grid col-span-2">
-      <p class="m-0">
-       {{editdata?.staffid}}
-      </p>
+      <div class="dialogdiv grid grid-cols-2 border-2 rounded-md h-full w-full justify-items-center divide-y divide-x ">
+        <div class="h-full w-full flex justify-center items-center"><p >Worker ID : {{editdata?.staffid}}</p></div> 
+          
+        <div class="h-full w-full flex justify-center items-center"><input   class="h-10 w-36 border-2 rounded-sm"      pInputText 
+          [disabled]="true" 
+          placeholder="{{editdata?.staffid}}"
+          /></div>
+          <div class="h-full w-full flex justify-center items-center"> <p  class="">Worker Name :{{editdata?.name}}</p></div>
+          <div class="h-full w-full flex justify-center items-center">   <input class="border-2 b rounded-md" type="text" pInputText  required /></div>
 
-      <p class="m-0">
-        {{editdata?.name}}
-      </p>
-      <p class="m-0">
-        {{editdata?.status}}
-      </p>
-      <p class="m-0">
-        {{editdata?.phone}}
-      </p>
-      <p class="m-0">
-        {{editdata?.gender}}
-      </p>
-      <p class="m-0">
-        {{editdata?.skill}}
-      </p>
+          <div class="h-full w-full flex  justify-center items-center">  <p>Worker phone No :{{editdata?.phone}}</p></div>
+          <div class="h-full w-full flex justify-center items-center"> <input   class="h-10 w-36 border-2 rounded-sm"      pInputText 
+          
+          /></div>
+          <div class="h-full w-full flex justify-center items-center">  <p>Gender :{{editdata?.gender}}</p></div>
+
+          <div class="h-full w-full flex justify-center items-center">
+              <p-dropdown  [options]="gender" optionLabel="name" placeholder="Select a gender"
+            styleClass="input" required>  </p-dropdown>
+          </div>
+
+          <div class="h-full w-full flex justify-center items-center"><p>Qulaification :{{editdata?.skill}}</p></div>
+          <div class="h-full w-full flex  justify-center items-center"><p-multiSelect [options]="work"  optionLabel="name" placeholder="Select work"
+            styleClass="input" required>
+             </p-multiSelect></div>
 
 
        </div>
 
       <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="visible = false" label="Ok" pAutoFocus [autofocus]="true"></p-button>
+        
+        <p-button icon="pi pi-check" (click)="okclick()" label="update" pAutoFocus [autofocus]="true"></p-button>
       </ng-template>
     </p-dialog>
 

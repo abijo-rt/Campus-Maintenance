@@ -14,7 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { ApiService } from '../.serive/api.service';
-import { StaffDetails, details } from '../.serive/product-service.service';
+import { ProductServiceService,StaffDetails, details } from '../.serive/product-service.service';
 
 
 interface work {
@@ -58,12 +58,14 @@ export class AdduserComponent {
   items: MenuItem[] | undefined;
   cities: City[] | undefined;
   loading: boolean = false;
-  // payload = '';
-  constructor(private message: MessageService,private apiservice :ApiService) {}
+ 
+  constructor(private message: MessageService,private apiservice :ApiService,private productservice:ProductServiceService) {}
   payLoad = '';
-  // formdata!:StaffDetails;
+ 
 
 onSubmit(){
+  this.loading=true;
+this.show();
 
   let formdata :StaffDetails = {
     name: this.form.value.name,
@@ -77,11 +79,13 @@ onSubmit(){
 console.log(formdata)
   this.apiservice
     .addstaff(formdata)
-    .subscribe((response) => console.log(response));
+    .subscribe((response) => console.log(response.status));
   
 }
 
-
+show():void{
+  this.message.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+}
 
   
 
@@ -97,15 +101,8 @@ console.log(formdata)
     ];
     
     this.activeItem = { label: 'Add Worker' };
-    this.items = [
-      { label: 'Dash Board', routerLink: '/dashboard' },
-      { label: '+ New Work', routerLink: '/addwork' },
-      { label: '+ New Worker', routerLink: '/adduser' },
-      { label: 'Work Log', routerLink: '/works' },
-      { label: 'Worker Details', routerLink: '/workerdetails' },
-      { label: 'Settings', routerLink: '/settings' },
-  
-    ];
+    this.items=this.productservice.getMenuItem()
+   
     
     this.gender = [{ name: 'male' }, { name: 'female' }];
 

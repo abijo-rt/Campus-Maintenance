@@ -32,8 +32,17 @@
     align-items: left;
   }
 
+  
+  ::ng-deep .custom-table {
+    
+    width: 100%; /* Full width */
+    background-color: #f9f9f9; /* Light gray background */
+    
+  }
 
 }
+
+
 
 th{
   background-color: white;

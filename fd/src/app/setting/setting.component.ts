@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { MenuItem } from 'primeng/api';
+import { ProductServiceService } from '../.serive/product-service.service';
 @Component({
   selector: 'app-setting',
   standalone: true,
@@ -11,17 +12,11 @@ import { MenuItem } from 'primeng/api';
 export class SettingComponent {
   activeItem: MenuItem = { label: 'Settings' };
   
-  items: MenuItem[] | undefined;
+  constructor(private productservice:ProductServiceService){}
+  
+  items=this.productservice.getMenuItem()
   
   
-  ngOnInit() {
-     this.items = [
-       { label: 'Dash Board', routerLink: '/dashboard' },
-       { label: '+ New Work', routerLink: '/adduser' },
-       { label: '+ New Worker', routerLink: '/addwork' },
-       { label: 'Work Log', routerLink: '/works' },
-       { label: 'Worker Details', routerLink: '/workerdetails' },
-       { label: 'Settings', routerLink: '/settings' },
-     ]}
+
     
 }

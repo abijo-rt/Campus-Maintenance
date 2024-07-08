@@ -6,6 +6,7 @@ import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,8 @@ export const appConfig: ApplicationConfig = {
     MessageService,
     CommonModule,
     importProvidersFrom(HttpClientModule),
-    NgModule
+    importProvidersFrom(BrowserModule),
+    NgModule,
+    provideAnimations()
   ],
 };
