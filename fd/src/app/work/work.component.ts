@@ -36,6 +36,7 @@ import { ApiService } from '../.serive/api.service';
 export class WorkComponent implements OnInit {
   checked: boolean = false;
   editdata!:worklog |undefined ;
+  activeItem: MenuItem = { label: 'Work Log' };
 
 showDialog(inputElement: number) {
     this.editdata=this.products.find(
@@ -75,6 +76,12 @@ this.editdata.status=true;
   ngOnInit() {
     this.items = [
       { label: 'Dash Board', routerLink: '/dashboard' },
+      { label: '+ New Work', routerLink: '/addwork' },
+      { label: '+ New Worker', routerLink: '/adduser' },
+      { label: 'Work Log', routerLink: '/works' },
+      { label: 'Worker Details', routerLink: '/workerdetails' },
+      { label: 'Settings', routerLink: '/settings' },
+
     ];
 
 
@@ -130,9 +137,9 @@ this.editdata.status=true;
   getStatus(status: boolean |undefined): string | undefined {
     switch (status) {
       case true:
-        return 'Free';
+        return 'Completed';
       case false:
-        return 'Busy';
+        return 'Pending';
       case undefined:
       return undefined  ;
     }
