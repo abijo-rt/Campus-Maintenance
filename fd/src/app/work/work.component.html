@@ -1,45 +1,44 @@
-<div class="card flex justify-content-center w-full border-b-2">
-  <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+<div class="w-fit   flex flex-row">
 
-</div>
 <p-toast></p-toast>
 
 
-<div class="p-2  ">
 
-  <div class="card w-full #table border-1 b rounded-md shadow-xl pl-2">
+<div class="p-2">
+
+  <div class="card  #table  rounded-lg    border-2 pl-2">
     <p-table #dt2 [value]="products" dataKey="id" [rows]="8" [showCurrentPageReport]="true" [paginator]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      styleClass="p-datatable-striped p-datatable-lg p-datatable-header " [tableStyle]="{ 'min-width': '50rem' }" [tableStyleClass]="'custom-table'" >
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      styleClass="p-datatable-striped p-datatable-lg p-datatable-header " [tableStyle]="{ 'min-width': '30rem' }" [tableStyleClass]="'custom-table'" >
       <ng-template pTemplate="header" [scrollable]="true">
         <tr >
+          
+          <th style="min-width:100px ">Edit work</th>
+          <th style="min-width: 100px ">TaskID</th>
+          <th style="min-width:100px">location</th>
+          <th style="min-width:100px">Category</th>
+          <th style="min-width:100px">Worker Count</th>
+          <th style="min-width:100px">status</th>
+          <th style="min-width:100px">Work Details</th>
+          <th style="min-width:100px">remarks</th>
+          
+          <tr >
+            <th class="border-y-2">
+              <p-calendar [(ngModel)]="date" (onSelect)="selectdate()" styleClass="calinput"[showTime]="false" [appendTo]="dt2"> </p-calendar>
 
-          <th style="min-width:75px ">Edit work</th>
-          <th style="min-width:200px ">TaskID</th>
-          <th style="min-width:200px">location</th>
-          <th style="min-width:200px">Category</th>
-          <th style="min-width:200px">Worker Count</th>
-          <th style="min-width:200px">status</th>
-          <th style="min-width:200px">Work Details</th>
-          <th style="min-width:300px">remarks</th>
-
-        <tr >
-    <th class="border-y-2">
-    <p-calendar [(ngModel)]="date" (onSelect)="selectdate()" styleClass="calinput"[showTime]="false" [appendTo]="dt2"> </p-calendar>
-
-    </th>
-
-          <th class="border-y-2">
-            <p-columnFilter type="text" field="taskid" placeholder="task id" styleClass="btn"></p-columnFilter>
-          </th>
-          <th class="border-y-2">
-            <p-columnFilter type="text" field="location" placeholder="location"></p-columnFilter>
-          </th>
-
-          <th class="border-y-2">
-            <p-columnFilter field="category" matchMode="equals" [showMenu]="false">
-              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                <p-dropdown [ngModel]="value" [options]="cate" (onChange)="filter($event.value)" placeholder="category"
+            </th>
+            
+            <th class="border-y-2">
+              <p-columnFilter type="text" field="taskid" placeholder="task id" styleClass="btn"></p-columnFilter>
+            </th>
+            <th class="border-y-2">
+              <p-columnFilter type="text" field="location" placeholder="location"></p-columnFilter>
+            </th>
+            
+            <th class="border-y-2">
+              <p-columnFilter field="category" matchMode="equals" [showMenu]="false">
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                  <p-dropdown [ngModel]="value" [options]="cate" (onChange)="filter($event.value)" placeholder="category"
                   [showClear]="true">
                   <ng-template let-option pTemplate="item">
                     <p-tag [value]="option.value"></p-tag>
@@ -51,16 +50,16 @@
           <th class="border-y-2">
             <p-columnFilter type="text" field="workerCount" placeholder="count"></p-columnFilter>
           </th>
-
+          
           <th class="border-y-2">
             <p-columnFilter field="status" matchMode="equals" [showMenu]="false" styleClass="btn">
               <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                 <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
-                  placeholder="status" [showClear]="true">
-                  <ng-template let-option pTemplate="item">
-                    <p-tag [value]="option.label" [severity]="getSeverity(option.value)"></p-tag>
-                  </ng-template>
-                </p-dropdown>
+                placeholder="status" [showClear]="true">
+                <ng-template let-option pTemplate="item">
+                  <p-tag [value]="option.label" [severity]="getSeverity(option.value)"></p-tag>
+                </ng-template>
+              </p-dropdown>
               </ng-template>
             </p-columnFilter>
           </th>
@@ -79,7 +78,7 @@
           <td class="border-b-2 border-[black]">{{ product.location }}</td>
           <td class="border-b-2 border-[black]">{{ product.category }}</td>
           <td class="border-b-2 border-[black]">{{ product.workerCount }}</td>
-
+          
           <td class="border-b-2 border-[black]">
             <p-tag [value]="getStatus(product.status)" [severity]="getSeverity(product.status)"></p-tag>
           </td>
@@ -96,20 +95,22 @@
     </p-table>
   </div>
 
-
-
+</div>
+  
+  
 
 </div>
 
 
-<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '40rem'  }" c
+
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '25rem'  }" 
 [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" styleClass="dialog" >
 <ng-template pTemplate="header" >
   Edit Work Status
 </ng-template>
 <ng-template pTemplate="body">
 
-<div class="dialogdiv flex flex-col ">
+<div class="dialogdiv flex flex-col p-5 ">
   
   <div class="dialogdiv flex flex-row justify-between">
     <div class="dialogdiv   "> status :   <p-tag [value]="getStatus(editdata?.status)" [severity]="getSeverity(editdata?.status)"></p-tag></div>
@@ -122,7 +123,14 @@
     </div>
 
   </div>
-  <div class="dialogdiv flex  ">remarks</div>
+
+  <div class="dialogdiv flex  mb-4">remarks</div>
+  <textarea  rows="5"
+  cols="30"
+ [(ngModel)]="remarkstr"
+  >
+
+  </textarea>
  </div>
 </ng-template>
 

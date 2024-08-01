@@ -11,27 +11,32 @@
 :host {
 
   ::ng-deep .input {
-    padding: .5rem;
+padding: 0px;
+    font-size: .7rem;
+    width: 200px;
+    height: 2rem;
+  }
 
-    font-size: .9rem;
-    width: 500px;
-    height: 4rem;
+  ::ng-deep .p-inputtext{
+  padding: 5px;
+  }
+
+  ::ng-deeo .p-multiselect .p-multiselect-label{
+    padding: 5px;
   }
 
    ::ng-deep .phoneinput {
-     padding: .5rem;
 
-     font-size: .9rem;
-     width: 505px;
-     height: 5rem;
+     width: 100px;
+     height: 2rem;
    }
 
 
   
 input{
-  width: 500px;
-  height: 4rem;
-  padding-left: 15px;
+
+  width: 200px;
+  height: 2rem;
   color: #4b5563;
 }
 

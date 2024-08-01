@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+
 export interface worklog {
   date:String,
   taskid: number;
@@ -24,7 +25,12 @@ export interface Cardinfo{
   pending:number;
 }
 
+export interface Cardinfotype{
 
+  type:string;
+  completed:number;
+  pending:number;
+}
 
 export interface type {
   label: string,
@@ -98,12 +104,12 @@ private Otype: options[] =[
 
 private menuItems:MenuItem[]=[
   
-    { label: 'Dash Board', routerLink: '/dashboard', icon: 'pi pi-chart-bar'  },
-    { label: 'New Work', routerLink: '/addwork', icon:'pi pi-calendar-plus'  },
-    { label: 'New Worker', routerLink: '/adduser' ,icon:'pi pi-user-plus'},
-    { label: 'Work Log', routerLink: '/works' ,icon:'pi pi-book'},
-    { label: 'Worker Details', routerLink: '/workerdetails',icon:'pi pi-address-book' },
-    { label: 'Settings', routerLink: '/settings', icon: 'pi pi-fw pi-cog' },
+    { label: 'Dash Board', routerLink: "/incharge/dashboard", icon: 'pi pi-chart-bar'  },
+    { label: 'New Work', routerLink: '/incharge/addwork', icon:'pi pi-calendar-plus'  },
+    { label: 'New Worker', routerLink: '/incharge/adduser' ,icon:'pi pi-user-plus'},
+    { label: 'Work Log', routerLink: '/incharge/works' ,icon:'pi pi-book'},
+    { label: 'Worker Details', routerLink: '/incharge/workerdetails',icon:'pi pi-address-book' },
+    { label: 'Settings', routerLink: '/incharge/settings', icon: 'pi pi-fw pi-cog' },
 
 ]
 getMenuItem():MenuItem[]{

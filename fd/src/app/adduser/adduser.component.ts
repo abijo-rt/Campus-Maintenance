@@ -85,6 +85,7 @@ console.log(formdata)
 
 show():void{
   this.message.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+  this.loading=false;
 }
 
   

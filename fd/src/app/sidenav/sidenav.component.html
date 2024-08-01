@@ -1,37 +1,25 @@
-<div class=" flex-col space-y-7 place-content-evenly h-100 " >
+<div class="side flex-col space-y-7   mt-16 " >
   
-   <div class="h-8 flex justify-center "></div> 
+   <div class="h-8 flex justify-start "></div> 
 
+   <div class="flex justify-center">
+    <p-button label="Dashboard" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/incharge/dashboard"></p-button>
+  </div>
   <div class="flex justify-center">
-    <p-button label="Dash Borad" [outlined]="true"  [raised]="true" styleClass="btn"
-      routerLink="/dashboard"></p-button>
+    <p-button label="+ Add Work" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/incharge/addwork"></p-button>
   </div>
-
   <div class="flex justify-center">
-    <p-button label="+ add Work " [outlined]="true"  [raised]="true" styleClass="btn" routerLink="/addwork">
-    </p-button>
+    <p-button label="+ Add Worker" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/incharge/adduser"></p-button>
   </div>
-
-
   <div class="flex justify-center">
-    <p-button label="+ Add Worker" [outlined]="true"  [raised]="true" styleClass="btn"
-    routerLink="/adduser"></p-button>
+    <p-button label="Works" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/incharge/works"></p-button>
   </div>
-
-  
   <div class="flex justify-center">
-    <p-button label="Works" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/works"></p-button>
+    <p-button label="Worker Details" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/incharge/workerdetails"></p-button>
   </div>
-  
-  <div class="flex justify-center">
-    <p-button label="Worker Details" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/workerdetails"></p-button>
-  </div>
-  
-  <div class="flex justify-center flex-col">
-    <span class="sm:inline"> <p-button label="Settings " [outlined]="true" [raised]="true" styleClass="btn" routerLink="/settings"></p-button></span>
-    <!-- <span class=" sm:hidden flex justify-center">
-      <p-button icon="pi pi-cog" />
-    </span> -->
-  </div>
-
+  <!-- <div class="flex justify-center flex-col">
+    <span class="sm:inline">
+      <p-button label="Settings" [outlined]="true" [raised]="true" styleClass="btn" routerLink="/incharge/settings"></p-button>
+    </span>
+  </div> -->
 </div>

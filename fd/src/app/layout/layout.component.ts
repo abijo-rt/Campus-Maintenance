@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { ProductServiceService } from '../.serive/product-service.service';
+import { AuthComponent } from "../auth/auth.component";
+import { TabmenuComponent } from "../tabmenu/tabmenu.component";
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [HeaderComponent,SidenavComponent,ContentComponent,RouterOutlet],
+  imports: [HeaderComponent, SidenavComponent, ContentComponent, RouterOutlet, AuthComponent, TabmenuComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })

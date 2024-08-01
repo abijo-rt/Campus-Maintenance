@@ -1,22 +1,40 @@
-<div class="main grid place-items-center h-screen bg-fixed " style="background-image: url(../assets/bg.jpg);">
-    <div class=" con  rounded-lg shadow-2xl w-1/2 h-3/4 flex flex-row divide-x-2 justify-stretch"style="background-color: #fbfbfb;">
-        <div class="logo w-1/2 bg-no-repeat bg-left rounded-l-lg " style="background-image: url(../assets/reno2.jpg);"></div>
-        <div class="content flex flex-col w-1/2">
-            <div class="title h-32   w-full grid place-items-center " ><p class="font-mono text-4xl ">Campus Maintence</p></div>
-            <div class="title h-10   w-full grid place-items-center " ><p class="font-mono text-3xl ">LOGIN</p></div>
-            <div class="body h-3/4 flex  flex-col items-center justify-center space-y-12 w-full ">
-                <p-floatLabel class="">
-                    <input pInputText id="username" [(ngModel)]="value" class="border-2 h-14 w-80" />
-                    <label for="username">Username</label>
-                </p-floatLabel>
-                <p-floatLabel>
-                    <input pInputText id="username" [(ngModel)]="value" class="border-2 h-14 w-80"/>
-                    <label for="password">Password</label>
-                </p-floatLabel>
+<div class="main grid place-items-center h-screen bg-fixed" style="background-image: url(../assets/bg.jpg);">
+    <div class="con rounded-lg shadow-2xl w-1/2 h-3/4 flex flex-row divide-x-2 justify-stretch" style="background-color: #fbfbfb;">
+      <div class="logo w-1/2 bg-no-repeat bg-left rounded-l-lg" style="background-image: url(../assets/reno2.jpg);"></div>
+     
+      <div class="content flex flex-col w-1/2">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-                <p-button label="Login" severity="secondary" />
+          <div class="title h-fit w-full grid place-items-center mt-5">
+            <img src="../assets/cm.png" alt="" class="size-16">
+          </div>
+
+          <div class="title h-fit w-full grid place-items-center mt-4 ">
+            <p class="font-mono text-2xl text-center">Bannari Amman Instiue of Technology</p>
+          </div>
+          <div class="title h-fit w-full grid place-items-center mt-4">
+            <p class="font-mono text-xl"></p>
+          </div>
+          <!-- <div class="title h-fit w-full grid place-items-center mt-14">
+            
+          </div> -->
+          <div class="body h-fit flex flex-col items-center justify-center w-full space-y-6">
+            <p class="font-mono text-2xl">LOGIN</p>
+            <input formControlName="email" id="email" placeholder="Enter your email" class="border-2 h-10 w-48 rounded-lg" />
+            <div *ngIf="submitted && f['email'].errors" class="error-message">
+              <div *ngIf="f['email'].errors['required']">Email is required</div>
             </div>
-        </div>
-        
+            
+            <input formControlName="password" id="password" placeholder="Enter your password" class="border-2 h-10 w-48 rounded-lg" />
+            <div *ngIf="submitted && f['password'].errors" class="error-message">
+              <div *ngIf="f['password'].errors['required']">Password is required</div>
+            </div>
+            
+            <button type="submit" class="p-2 bg-blue-500 text-white rounded-lg w-48 pl-20">Login</button>
+          </div>
+          <div *ngIf="error" class="error-message">{{ error }}</div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
+  

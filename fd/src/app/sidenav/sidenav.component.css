@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+.side{
+    height: 91vh;
+    width: fit-content;
+}
 
 :host {
  

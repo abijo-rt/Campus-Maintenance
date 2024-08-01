@@ -1,20 +1,21 @@
-<p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
 
-<div class="p-2  ">
 
-  <div class="card w-full  border-1 b rounded-md shadow-xl pl-2">
-    <p-table #dt2 [value]="workerdata" dataKey="id" [rows]="8" [showCurrentPageReport]="true" [paginator]="true"
+
+<div class="p-2    ">
+
+  <div class="card  h-fit border-2 b rounded-md shadow-xl pl-2 ">
+    <p-table #dt2 [value]="workerdata" dataKey="id" [rows]="9" [showCurrentPageReport]="true" [paginator]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      styleClass="p-datatable-striped p-datatable-lg p-datatable-header" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header" [scrollable]="true">
+      styleClass="p-datatable-striped p-datatable-lg p-datatable-header" [tableStyle]="{ 'min-width': '40rem' }">
+      <ng-template pTemplate="header" [scrollable]="true" class="">
         <tr>
           <th style="min-width:75px">Edit Details </th>
-          <th style="min-width:200px ">Worker name</th>
-          <th style="min-width:200px">Worker ID</th>
-          <th style="min-width:200px">Gender</th>
-          <th style="min-width:200px">status </th>
-          <th style="min-width:200px">phone No </th>
-          <th style="min-width:600px">qualification</th>
+          <th style="min-width:150px ">Worker name</th>
+          <th style="min-width:150px">Worker ID</th>
+          <th style="min-width:150px">Gender</th>
+          <th style="min-width:150px">status </th>
+          <th style="min-width:150px">phone No </th>
+          <th style="min-width:300px">qualification</th>
 
 
 

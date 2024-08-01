@@ -1,6 +1,6 @@
 // controller/apiController.js
 
-const { Worklog, WorkerDetails, OData, Workinfo } = require('../model/schema');
+const { Worklog, WorkerDetails, OData, Workinfo ,Workinfotype} = require('../model/schema');
 
 exports.addWork = async (req, res) => {
     try {
@@ -12,21 +12,24 @@ exports.addWork = async (req, res) => {
             category: workData.category.name,
             workerCount: workData.workerCount,
             workerDetails: workData.workerDetails,
+            remarks:""
         });
 
+workinfotype(workData)
+
         const workinfo = await Workinfo.findOne({ date: workData.date });
-        console.log(workinfo)
+        // console.log(workinfo)
 
         if (workinfo) {
-            console.log("document is alredy exists")
+            // console.log("document is alredy exists")
             const locationName = workData.location.name;
             if (await Workinfo.findOne({ date: workData.date, 'location.location': workData.location.name })) {
-                console.log("incarementing pennign work")
+                // console.log("incarementing pennign work")
                 const locationIndex = workinfo.location.findIndex(loc => loc.location === locationName);
                 workinfo.location[locationIndex].pending += 1;
                 await workinfo.save();
             } else {
-                console.log("pushing new document")
+                // console.log("pushing new document")
                 await Workinfo.findOneAndUpdate(
                     { date: workData.date },
                     {
@@ -56,6 +59,42 @@ exports.addWork = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+workinfotype= async (workdata)=>{
+
+    const work=await Workinfotype.findOne({date:workdata.date})
+    console.log(work)
+    if(work){
+        if(await Workinfotype.findOne({date:workdata.date,'type.type':workdata.category.name})){
+            const TypeIndex = work.type.findIndex(t => t.type === workdata.category.name);
+            work.type[TypeIndex].pending += 1;
+            await work.save();
+        }else{
+            await Workinfotype.findOneAndUpdate(
+                { date: workdata.date },
+                {
+                    $push: {
+                        type: {
+                            type: workdata.category.name,
+                            pending: 1,
+                            completed: 0
+                        }
+                    }
+                },
+                { new: true, upsert: true }
+            )
+        }
+    }
+    else{
+        const work1=new Workinfotype({
+            date:workdata.date,
+            type:[{type : workdata.category.name,pending: 1, completed: 0  }]
+        })
+
+        const saved =await work1.save()
+        console.log(saved)
+    }
+}
 
 exports.addStaff = async (req, res) => {
     try {
@@ -136,12 +175,15 @@ exports.editwork = async (req, res) => {
         const data = req.body;
         const date = req.body.date;
         const location = req.body.location;
+        const remarks=req.body.remarks;
+
         const result = await Worklog.findOneAndUpdate({ taskid: id }, data, { new: true });
-        console.log('restult', result);
+        console.log('data    ==>', data);
+        console.log('Result  ==>', result);
 
         const workinfo = await Workinfo.findOne({ date: date });
         console.log(workinfo)
-
+       
         if (workinfo) {
             console.log("document is alredy exists")
             const locationName = location;
@@ -154,17 +196,17 @@ exports.editwork = async (req, res) => {
 
 
                 console.log("task ID "+id)
-                const updatedDocument = await Worklog.findOneAndUpdate(
-                    { taskid:id }, // Query criteria
-                    { $set: { status: true } }, // Update operation
-                    { new: true } // Return the updated document
-                  );
+                // const updatedDocument = await Worklog.findOneAndUpdate(
+                //     { taskid:id }, // Query criteria
+                //     { $set: { status: true } }, // Update operation
+                //     { new: true } // Return the updated document
+                //   );
               
-                  if (updatedDocument) {
-                    console.log('Document updated successfully:', updatedDocument);
-                  } else {
-                    console.log('No document found with the given Task ID');
-                  }
+                //   if (updatedDocument) {
+                //     console.log('Document updated successfully:', updatedDocument);
+                //   } else {
+                //     console.log('No document found with the given Task ID');
+                //   }
             }
 
         }
@@ -189,12 +231,33 @@ exports.getcard = async (req, res) => {
     const currdate = `${day}-${month}-${year}`;
 
     try {
-        console.log("request recived")
-        console.log("Query date "+ typeof querydate)
-        console.log("current date" + currdate)
+        // console.log("request recived")
+        // console.log("Query date "+ typeof querydate)
+        // console.log("current date" + currdate)
 
         const cardinfo = await Workinfo.findOne({ date: querydate }, 'location -_id');
         console.log(cardinfo)
         res.json(cardinfo);
     } catch { }
 }
+
+exports.getcardtype = async (req, res) => {
+    const date = new Date();
+      const querydate = (req.query.date)
+ 
+     const day = String(date.getDate()).padStart(2, '0');
+     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+     const year = date.getFullYear();
+     const currdate = `${day}-${month}-${year}`;
+ 
+     try {
+         console.log("request recived CARD TYPE")
+         console.log("Query date "+ typeof querydate)
+         console.log("current date" + currdate)
+ 
+         const cardinfo = await Workinfotype.findOne({ date: querydate }, 'type -_id');
+         console.log(cardinfo)
+         res.json(cardinfo);
+     } catch { }
+ }
+

@@ -9,7 +9,7 @@ import {
   optionData,
   StaffDetails,
   options,
-  Cardinfo,
+  Cardinfotype,
 } from '../.serive/product-service.service';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -27,9 +27,9 @@ export class ApiService {
 
 
 
-  gettoken():string | null{
-    return localStorage.getItem("token");
-  }
+  // gettoken():string | null{
+  //   return localStorage.getItem("token");
+  // }
 
   addwork(work: worklog): Observable<string> {
     return this.http
@@ -60,22 +60,24 @@ export class ApiService {
     return this.http.get<any[]>('http://localhost:3000/worklog/',{params:date});
   }
 
+  
   editwork(data: worklog): Observable<any> {
     return this.http
-      .post<string>('http://localhost:3000/worklog', data, this.httpOptions)
-      .pipe(catchError(this.handleError));
+    .post<string>('http://localhost:3000/worklog', data, this.httpOptions)
+    .pipe(catchError(this.handleError));
   }
-
+  
+  getcardtypelog(strdate:string){
+    const date=new HttpParams().set('date',strdate)
+    return this.http.get<any>('http://localhost:3000/cardtype/',{params:date});
+  
+  }
   
   getcardinfo(strdate:string) {
   let para=new HttpParams().set('date',strdate);
     return this.http.get<any>('http://localhost:3000/cardinfo',{params:para})
   }
 
-  // getcardinfo() {
-   
-  //     return this.http.get<any>('http://localhost:3000/cardinfo')
-  //   }
   
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

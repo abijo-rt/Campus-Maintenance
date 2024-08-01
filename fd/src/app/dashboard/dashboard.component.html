@@ -1,17 +1,124 @@
-<div class="overflow-hidden">
-<p-tabMenu [model]="items" [activeItem]="activeItem"> </p-tabMenu>
-<p-calendar [(ngModel)]="date" (onSelect)="selectdate()" styleClass="calinput" [showIcon]="true" [showTime]="false"> </p-calendar>
-<div class="flex flex-col  items-center ">
-  
-    <div #logoDiv class=" logo hidden " style="background-image: url(../assets/nowork.jpeg);"></div>
- 
-  
-  <div id="row1" class="grid grid-rows-1 gap-y-10 m-10  md:grid-cols-4">
-    <div  *ngFor="let card of cards">
-      <app-card [location]="card.location" [pending]="card.pending" [completed]="card.completed"></app-card>
+<div  class="dash h-fit flex w-screen flex-row relative overflow-scroll " style="background-color: #f8f8f8;">
+<div class="c1 ">
+  <div class="flex flex-row w-full">
+    <p-calendar
+      [(ngModel)]="date"
+      (onSelect)="selectdate()"
+      styleClass="calinput"
+      [showIcon]="true"
+      [showTime]="false"
+    >
+    </p-calendar>
+    <div
+      class="h-12 w-52 rounded-md mt-5 flex justify-evenly items-center shadow-lg  bg-white"
+    >
+      <div class="h-full w-32 flex items-center justify-center rounded-l-lg " pTooltip="Total work Sheduled"
+      tooltipPosition="bottom" style="color: blue;">
+      <i class="ph-fill ph-calendar-blank text-xl" ></i>
+        <span class="num ml-2 font-medium">: 25</span>
+      </div>
+      <div class="tot h-full w-36 flex items-center justify-center " pTooltip="Pending work "
+      tooltipPosition="bottom" style="color: red;">
+      <i class="ph-fill ph-clock text-2xl"></i>    
+          <span class="num ml-2">: 15</span>
+      </div>
+      <div class="h-full w-32 flex items-center justify-center rounded-r-lg"  pTooltip="Completed work "
+      tooltipPosition="bottom" style="color: green;">
+      <i class="ph-fill ph-check-circle text-2xl"></i>
+        <span class="num ml-2">: 10</span>
+      </div>
+    </div>
+
+    <div
+      class="h-12 w-52 rounded-md mt-5 flex justify-evenly items-center shadow-lg  ml-5 bg-white"
+    >
+      <div class="h-full w-32 flex items-center justify-center rounded-l-lg"  pTooltip="Total Labour"
+      tooltipPosition="bottom">
+        <i class="ph-fill ph-user-circle text-2xl"></i>
+        <span class="num ml-2 font-medium">: 30</span>
+      </div>
+      <div class="h-full w-36 flex items-center justify-center border-x-2"  pTooltip="Total Incharge"
+      tooltipPosition="bottom">
+        <i class="ph-fill ph-user-circle-gear text-2xl"></i>
+        <span class="num ml-2">: 5</span>
+      </div>
+      <div class="h-full w-32 flex items-center justify-center rounded-r-lg"  pTooltip="Total Admin"
+      tooltipPosition="bottom">
+        <i class="ph-fill ph-user-circle-check text-2xl"></i>
+        <span class="num ml-2">: 2</span>
+      </div>
+    </div>
+
+    <div class="h-12 w-52 rounded-md mt-5 ml-5 flex justify-evenly items-center shadow-lg  bg-white"  pTooltip="Current user"
+    tooltipPosition="bottom" > 
+  <i class="ph-fill ph-identification-card text-4xl" ></i>
+<p-tag value="Incharge"/>
+</div>
+
+  </div>
+  <div class="flex flex-row items-start justify-start w-full pl-5">
+    <!-- <div
+      #logoDiv
+      class="logo hidden"
+      style="background-image: url(../assets/nowork.jpeg)"
+    ></div> -->
+
+    
+    <div
+      class="h-fit w-fit rounded-md shadow-lg  justify-center items-center bg-white p-4"
+    >
+      <div class="w-full h-10 flex flex-row justify-between items-center p-y-5 pl-2">
+        <span class="font-bold text-gray-600 text-xl">Location Wise Data </span>
+      </div>
+      <div id="row1" class="grid grid-rows-1 place-items-center md:grid-cols-2">
+        <div *ngFor="let card of cards" class="p-2">
+          <app-card
+            [location]="card.location"
+            [pending]="card.pending"
+            [completed]="card.completed"
+          ></app-card>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="h-fit w-fit rounded-md shadow-lg justify-center items-center overflow-hidden ml-5 p-4 bg-white "
+    >
+      <div class="w-full h-10 flex flex-row justify-between items-center p-y-5 pl-2">
+        <span class="font-bold text-gray-600 text-xl">Work Wise Data </span>
+      </div>
+      <div id="row1" class="grid grid-rows-1 place-items-center md:grid-cols-2">
+        <div *ngFor="let card of cardtype" class="p-2">
+
+        <app-d-work-card [type]="card.type"
+        [pending]="card.pending"
+        [completed]="card.completed">
+
+        </app-d-work-card>
+
+        </div>
+      </div>
     </div>
   </div>
+  <div class="h-16"></div>
 
- 
 </div>
+
+<div  class=" c2 h-fit   rounded-md shadow-lg justify-center items-center overflow-hidden m-5 pt-2 bg-white"
+    >
+      <div class=" h-10 w-full flex flex-row justify-center items-center p-5">
+        <span class="font-bold text-gray-600 text-xl mt-2">DATA </span>
+      </div>
+      <div class="chart  w-full flex flex-row justify-center items-center p-5">
+        <canvas id="myChart"></canvas>
+      </div>
+      <!-- <div class="hidden">
+        <canvas id="myChart"></canvas>
+      </div>
+      <div class="hidden">
+        <canvas id="myChart"></canvas>
+      </div> -->
+    </div>
+    <div class="h-32"></div>
+
 </div>

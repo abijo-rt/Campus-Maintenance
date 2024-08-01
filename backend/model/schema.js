@@ -8,20 +8,34 @@ const worklogSchema = new Schema({
     category: String,
     taskid: {type:Number,index:true},
     workerCount: Number,
+    remarks:String,
     workerDetails: [String],
     status: { type: Boolean, default: false },
 
 });
+
 const locationwork=new Schema({
     location:String,
     pending:Number,
     completed:Number,
 });
 
+const typework=new Schema({
+    type:String,
+    pending:Number,
+    completed:Number
+});
+
+const workinfotype=new Schema({
+date:String,
+type:[typework]
+})
+
 const workinfo=new Schema({
 date:String,
 location:[locationwork]
 });
+
 
 const worker = new Schema({
     name: String,
@@ -32,6 +46,21 @@ const worker = new Schema({
     status: { type: Boolean, default: true },
 
 });
+
+const incharge=new Schema(
+    {
+        name:String,
+        email:String,
+        password:String,
+        worktype:String,
+        phoneno:Number,
+        role:{
+            type:String,
+            enum:['admin','incharge'],
+            required:true
+        }
+    }
+)
 
 
 worker.plugin(mongooseSequence, { id: "staffid_counter", inc_field: "staffid", start_seq: 100 });
@@ -50,13 +79,17 @@ const OData = mongoose.model('optiondata', dataSchema);
 
 
 
-
+const Incharge=mongoose.model('incharge',incharge)
 const Worklog = mongoose.model('work_log', worklogSchema);
 const Workinfo = mongoose.model('work_info', workinfo);
 const WorkerDetails = mongoose.model('staff', worker);
+const Workinfotype =mongoose.model('work_info_type',workinfotype)
+
 module.exports = {
     WorkerDetails: WorkerDetails,
     OData: OData,
     Worklog: Worklog,
-    Workinfo:Workinfo
+    Workinfo:Workinfo,
+    Incharge:Incharge,
+    Workinfotype:Workinfotype
 };

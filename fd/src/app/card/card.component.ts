@@ -4,17 +4,17 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Cardinfo, ProductServiceService } from '../.serive/product-service.service';
-
+import { TagModule } from 'primeng/tag';
 import { ProgressBarModule } from 'primeng/progressbar';
 
-
+// import { BadgeModule } from 'primeng/badge';
 
 
 @Component({
   selector: 'app-card',
   standalone: true,
   imports: [BadgeModule,ButtonModule,CommonModule,ProgressBarModule,
-    CardModule
+    CardModule,TagModule
   ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'

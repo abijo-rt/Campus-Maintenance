@@ -1,6 +1,13 @@
+@import "primeicons/primeicons.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.dash{
+  height: 91vh;
+  
+}
 
 .logo{
     margin-top: 50px;
@@ -11,7 +18,7 @@
 ::ng-deep .calinput input {
     font-size: 1rem;
     width: 250px;
-    height: 4rem;
+    height: 3rem;
   }
   
 
@@ -19,3 +26,39 @@
     
     margin: 20px;
   }
+
+
+
+
+  .num{
+    
+      font-family: 'Inter', sans-serif;
+   
+    
+  }
+
+
+
+
+
+
+
+  .tot{
+    color:#abff9e;
+  }
+
+
+  .main{
+    width: 80%;
+  }
+
+  /* .c1{
+    width: 80%;
+  } */
+  .c2{
+    width: 35%;
+  }
+
+  /* .chart{
+    width: 1000px;
+  } */

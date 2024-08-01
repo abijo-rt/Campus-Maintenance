@@ -16,11 +16,16 @@ import { ApiService } from '../.serive/api.service';
 import { ToastModule } from 'primeng/toast';
 import { catchError, throwError } from 'rxjs';
 import { CalendarModule } from 'primeng/calendar';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+
+
+
 @Component({
   selector: 'app-work',
   standalone: true,
   imports: [
     BreadcrumbModule,
+    InputTextareaModule,
     CalendarModule,
     PaginatorModule,
     ToggleButtonModule,
@@ -42,7 +47,7 @@ export class WorkComponent implements OnInit {
   checked: boolean = false;
   editdata!: worklog | undefined;
   activeItem: MenuItem = { label: 'Work Log' };
-
+  remarkstr!:string 
 /**********************************************EDIT OPTIONS                 ******* */
   showDialog(inputElement: number) {
     this.editdata = this.products.find(
@@ -54,6 +59,14 @@ export class WorkComponent implements OnInit {
   oneditdata() {
     if (this.editdata && this.editdata.taskid !== undefined) {
       console.log(this.editdata)
+      if ((this.editdata !== undefined) ) {
+        if(this.editdata.status == true)this.editdata.status = false;
+        else this.editdata.status = true;
+      
+        // this.editdata.status = true;
+        this.editdata.remarks=this.remarkstr;
+        console.log(this.editdata)
+      }
 
       this.apiservice.editwork(this.editdata).pipe(
         catchError((error: any) => {
@@ -63,15 +76,12 @@ export class WorkComponent implements OnInit {
       ).subscribe((response: any) => {
         this.showMsg(response.status)
         console.log('Data updated successfully:', response.status);
-        if ((this.editdata !== undefined) && response.status == 200) {
-
-          this.editdata.status = true;
-        }
+       
 
       });
       this.visible = false;
     }
-
+// this.remarkstr="";
 
   }
 

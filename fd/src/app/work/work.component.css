@@ -13,14 +13,14 @@
   }
 
   ::ng-deep .dialog {
-    height: 25rem;
+    height: 26rem;
  
    }
  
 
   ::ng-deep .p-inputtext {
     height: 35px;
-    width: 150px;
+    width: 100px;
     display: flex;
     align-items: center;
   }
@@ -32,18 +32,34 @@
     align-items: left;
   }
 
-  
-  ::ng-deep .custom-table {
-    
-    width: 100%; /* Full width */
-    background-color: #f9f9f9; /* Light gray background */
-    
+  ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    padding: 5px 5px 0px 20px;
+    /* width: 100px; */
   }
 
+
+ ::ng-deep .p-button.p-button-icon-only {
+  width: 2rem;
+  height: 2rem;
+  margin: 5px;
+ }
+
+::ng-deep .p-datatable.p-datatable-lg .p-datatable-thead > tr > th {
+  padding: 10px;
 }
 
 
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page{
+  height: 2rem;
+ min-width: 2rem ;
+}
 
+::ng-deep .p-paginator{
+  padding: 0px;
+}
+
+}
 th{
   background-color: white;
+  /* height: 10px; */
 }

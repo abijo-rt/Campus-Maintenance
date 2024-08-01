@@ -3,11 +3,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ProductServiceService } from '../.serive/product-service.service';
-
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [ButtonModule,RouterLink,RouterLinkActive],
+  imports: [ButtonModule,RouterLink,RouterLinkActive,RouterOutlet],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css'
 })
