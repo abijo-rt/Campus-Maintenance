@@ -52,6 +52,10 @@ interface work {
 
 
 export class WorkerdetailsComponent {
+editgender: any;
+editskill: any;
+editphone: any;
+editname: any;
 reset() {
 throw new Error('Method not implemented.');
 }
@@ -59,8 +63,24 @@ gender: gender[] | undefined;
 work: work[] | undefined;
 
 okclick() {
-  this.visible = false;
-  this.showMsg(400)
+ 
+  const update = {
+    name : this.editname ,
+    gender : this.editgender ,
+    phone : this.editphone ,
+    skill : this.editskill,
+    id : this.editdata?.staffid
+  }
+  this.apiservice.updateworkerdata(update).subscribe((res) => {
+    // console.log("respnse" , res.ok)
+    if(res){
+      this.showMsg(200)
+    }else{
+      this.showMsg(400)
+    }
+  })
+  console.log(update)
+  
 }
 
 constructor(

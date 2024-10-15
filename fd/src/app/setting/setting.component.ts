@@ -12,6 +12,9 @@ import { DialogModule } from 'primeng/dialog';
   styleUrl: './setting.component.css'
 })
 export class SettingComponent {
+showLocationEdit() {
+throw new Error('Method not implemented.');
+}
   activeItem: MenuItem = { label: 'Settings' };
   
   constructor(private productservice:ProductServiceService){}

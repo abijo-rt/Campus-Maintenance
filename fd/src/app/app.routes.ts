@@ -14,13 +14,7 @@ import {AuthGuardService} from './.serive/authguard.service'
 
 export const routes: Routes = [
   
-      // { path: 'dashboard', component: DashboardComponent },
-      // { path: 'adduser', component: AdduserComponent  },
-      // { path: 'works', component: WorkComponent  },
-      // { path: 'edituser', component: CardComponent },
-      // { path: 'addwork', component: AddworkComponent },
-      // { path: 'workerdetails', component: WorkerdetailsComponent },
-      // { path: 'settings', component: SettingComponent  },
+     
 
       { path: 'login', component: AuthComponent },
       {

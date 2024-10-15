@@ -5,7 +5,7 @@ import { ChipModule } from 'primeng/chip';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { MenuItem } from 'primeng/api';
 import { CardComponent } from '../card/card.component';
-import { Cardinfo, ProductServiceService,Cardinfotype } from '../.serive/product-service.service';
+import { Cardinfo, ProductServiceService,Cardinfotype,Carddata } from '../.serive/product-service.service';
 import { ApiService } from '../.serive/api.service';
 import { CommonModule } from '@angular/common';
 import { CalendarModule } from 'primeng/calendar';
@@ -17,12 +17,13 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RippleModule } from 'primeng/ripple';
 import { Chart } from 'chart.js';
-import { DGridComponent } from "../d-grid/d-grid.component";
+
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [DWorkCardComponent,TooltipModule, RippleModule, ChartComponent, LayoutComponent, ChipModule, TabMenuModule, CardComponent, CommonModule, CalendarModule, TagModule, FormsModule, ReactiveFormsModule, DGridComponent],
+  imports: [DWorkCardComponent,TooltipModule, RippleModule, ChartComponent, LayoutComponent, ChipModule, TabMenuModule, CardComponent, CommonModule, CalendarModule, TagModule, FormsModule, ReactiveFormsModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -37,6 +38,9 @@ selectdate() {
   const selecteddate=this.dateformat(this.date);
    this.cardinfoapi(selecteddate)
    this.cardinfoworkapi(selecteddate)
+  this.dashcard(selecteddate)
+  this.chart()
+
 }
   // @ViewChild('logoDiv') logoDiv!: ElementRef;
 
@@ -44,7 +48,7 @@ selectdate() {
  cards!:Cardinfo[];
  cardtype!:Cardinfotype[];
   newdate!: String;
-
+carddata!:Carddata
   constructor(private productServiceService: ProductServiceService,private apiservice :ApiService){}
 
 
@@ -65,9 +69,10 @@ ngOnInit() {
   const strdate=this.dateformat(this.date);
   this.cardinfoapi(strdate)
   this.cardinfoworkapi(strdate)
+  this.dashcard(strdate)
   this.items=this.productServiceService.getMenuItem()
   
-  
+  // this.chart()
   
   
 
@@ -77,16 +82,7 @@ ngOnInit() {
         this.activeItem = this.items[0];
     }
 
-// displaylogo(status:number):void{
-//   const div = this.logoDiv.nativeElement as HTMLElement;
-//   if(status){
-//   div.style.display='block';
-// }else{
-//   div.style.display='none';
 
-// }
-
-// }
 
 cardinfoapi(date:string):void{
   // this.displaylogo(1)
@@ -99,12 +95,7 @@ this.apiservice.getcardinfo(date).subscribe((workdata) => {
 pending:data.pending,
 completed:data.completed
     }))
-    // this.displaylogo(0)
-
-
   } else {
-    // this.displaylogo(1)
-    
     console.error(
       'Received null or undefined data from getWorkerDetails()'
     );
@@ -129,7 +120,19 @@ cardinfoworkapi(date:string):void{
   });
   }
 
+dashcard(strdate:string):void{
+this.apiservice.getdashcard(strdate).subscribe((data:any)=> this.carddata=data)
+console.log(this.carddata)
+
+}
+
+
 ngAfterViewInit() {
+// this.chart()
+  
+}
+
+chart(){
   const ctx = document.getElementById('myChart') as HTMLCanvasElement;
 
   new Chart(ctx, {
@@ -142,7 +145,7 @@ ngAfterViewInit() {
       ],
       datasets: [{
         label: 'Value ',
-        data: [150, 300],
+        data: [this.carddata.completed, this.carddata.pending],
         backgroundColor: [
           '#399918',
           '#ff7777',

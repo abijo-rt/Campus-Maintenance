@@ -1,12 +1,12 @@
-<div class="w-fit   flex flex-row">
+<div class="w-screen h-screen   flex flex-row" style="background-color: #ecf2f6;">
 
 <p-toast></p-toast>
 
 
 
-<div class="p-2">
+<div class="p-2 w-screen h-fit flex flex-row  justify-center " >
 
-  <div class="card  #table  rounded-lg    border-2 pl-2">
+  <div class="card  #table  rounded-lg    border-2 bg-white overflow-x-scroll">
     <p-table #dt2 [value]="products" dataKey="id" [rows]="8" [showCurrentPageReport]="true" [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       styleClass="p-datatable-striped p-datatable-lg p-datatable-header " [tableStyle]="{ 'min-width': '30rem' }" [tableStyleClass]="'custom-table'" >
@@ -108,29 +108,30 @@
 <ng-template pTemplate="header" >
   Edit Work Status
 </ng-template>
-<ng-template pTemplate="body">
+<ng-template pTemplate="body" >
 
-<div class="dialogdiv flex flex-col p-5 ">
+<div class="dialogdiv flex flex-col p-5 overflow-hidden">
   
   <div class="dialogdiv flex flex-row justify-between">
     <div class="dialogdiv   "> status :   <p-tag [value]="getStatus(editdata?.status)" [severity]="getSeverity(editdata?.status)"></p-tag></div>
     <div class="dialogdiv   ">
 
-      <p-toggleButton styleClass="togglebtn"
+      <!-- <p-toggleButton styleClass="togglebtn"
       [(ngModel)]="checked" 
-      onLabel="comlelted" 
-      offLabel="pending" />
+      onLabel="Completed" 
+      offLabel="Pending" /> -->
     </div>
 
   </div>
 
-  <div class="dialogdiv flex  mb-4">remarks</div>
+  <div class="dialogdiv flex  mb-3">remarks</div>
   <textarea  rows="5"
   cols="30"
  [(ngModel)]="remarkstr"
+ class="border-2 rounded-md"
   >
-
-  </textarea>
+</textarea>
+<div class="mt-4"><p >  Mark this work <span class="text-red-500">*</span>{{markstatus}}</p> </div>
  </div>
 </ng-template>
 

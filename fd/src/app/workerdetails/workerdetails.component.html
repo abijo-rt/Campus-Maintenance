@@ -1,7 +1,4 @@
-
-
-
-<div class="p-2    ">
+<div class="p-2  h-screen w-screen  " style="background-color: #ecf2f6;">
 
   <div class="card  h-fit border-2 b rounded-md shadow-xl pl-2 ">
     <p-table #dt2 [value]="workerdata" dataKey="id" [rows]="9" [showCurrentPageReport]="true" [paginator]="true"
@@ -20,22 +17,22 @@
 
 
       </ng-template>
-      <ng-template pTemplate="body" let-data >
+      <ng-template pTemplate="body" let-data>
         <tr>
           <td class="border-b-2 border-[black]">
             <p-toast></p-toast>
-             <p-button id="data.id" icon="pi pi-pencil" (click)="showDialog(data.staffid)"></p-button>
-           </td>
+            <p-button id="data.id" icon="pi pi-pencil" (click)="showDialog(data.staffid)"></p-button>
+          </td>
           <td class="border-b-2 border-[black]">{{ data.name}}</td>
           <td class="border-b-2 border-[black]">{{ data.staffid }}</td>
           <td class="border-b-2 border-[black]">{{ data.gender }}</td>
-         
+
 
           <td class="border-b-2 border-[black]">
             <p-tag [value]="getStatus(data.status)" [severity]="getSeverity(data.status)"></p-tag>
           </td>
-           <td class="border-b-2 border-[black]">{{ data.phone }}</td>
-        
+          <td class="border-b-2 border-[black]">{{ data.phone }}</td>
+
           <td class="border-b-2 border-[black]">{{ data.skill }}</td>
         </tr>
       </ng-template>
@@ -48,46 +45,55 @@
   </div>
 
 
-    <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50rem' }"
-      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" styleClass="dialog" >
-      <ng-template pTemplate="header" >
-        <p class="text-xl">Edit Worker Information</p>
-      </ng-template>
+  <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '40rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" styleClass="dialog">
+    <ng-template pTemplate="header">
+      <p class="text-xl">Edit Worker Information</p>
+    </ng-template>
 
-      <div class="dialogdiv grid grid-cols-2 border-2 rounded-md h-full w-full justify-items-center divide-y divide-x ">
-        <div class="h-full w-full flex justify-center items-center"><p >Worker ID : {{editdata?.staffid}}</p></div> 
-          
-        <div class="h-full w-full flex justify-center items-center"><input   class="h-10 w-36 border-2 rounded-sm"      pInputText 
-          [disabled]="true" 
-          placeholder="{{editdata?.staffid}}"
-          /></div>
-          <div class="h-full w-full flex justify-center items-center"> <p  class="">Worker Name :{{editdata?.name}}</p></div>
-          <div class="h-full w-full flex justify-center items-center">   <input class="border-2 b rounded-md" type="text" pInputText  required /></div>
+    <div class="dialogdiv grid grid-cols-2 border-2 rounded-md h-full w-full justify-items-center p-2">
+      <div class="h-full w-full flex justify-start items-center">
+        <p>Worker ID : {{editdata?.staffid}}</p>
+      </div>
 
-          <div class="h-full w-full flex  justify-center items-center">  <p>Worker phone No :{{editdata?.phone}}</p></div>
-          <div class="h-full w-full flex justify-center items-center"> <input   class="h-10 w-36 border-2 rounded-sm"      pInputText 
-          
-          /></div>
-          <div class="h-full w-full flex justify-center items-center">  <p>Gender :{{editdata?.gender}}</p></div>
+      <div class="h-full w-full flex justify-start items-center"><input class="input bg-yellow-50"
+           [disabled]="true" placeholder="{{editdata?.staffid}} " /></div>
+      <div class="h-full w-full flex justify-start items-center">
+        <p class="">Worker Name :{{editdata?.name}}</p>
+      </div>
+      <div class="h-full w-full flex justify-start items-center"> <input class="input" type="text"
+          [(ngModel)]="editname" /></div>
 
-          <div class="h-full w-full flex justify-center items-center">
-              <p-dropdown  [options]="gender" optionLabel="name" placeholder="Select a gender"
-            styleClass="input" required>  </p-dropdown>
-          </div>
+      <div class="h-full w-full flex  justify-start items-center">
+        <p>Worker phone No :{{editdata?.phone}}</p>
+      </div>
+      <div class="h-full w-full flex justify-start items-center"> <input class="input"
+          [(ngModel)]="editphone" /></div>
 
-          <div class="h-full w-full flex justify-center items-center"><p>Qulaification :{{editdata?.skill}}</p></div>
-          <div class="h-full w-full flex  justify-center items-center"><p-multiSelect [options]="work"  optionLabel="name" placeholder="Select work"
-            styleClass="input" required>
-             </p-multiSelect></div>
+      <div class="h-full w-full flex justify-start items-center">
+        <p>Gender :{{editdata?.gender}}</p>
+      </div>
+
+      <div class="h-full w-full flex justify-start items-center">
+        <p-dropdown [options]="gender" optionLabel="name" placeholder="Select a gender" styleClass="input" required
+          [(ngModel)]="editgender"> </p-dropdown>
+      </div>
+
+      <div class="h-full w-full flex justify-start items-center">
+        <p>Qulaification :{{editdata?.skill}}</p>
+      </div>
+      <div class="h-full w-full flex  justify-start items-center"><p-multiSelect [options]="work" optionLabel="name"
+          placeholder="Select work" styleClass="input" [(ngModel)]="editskill" required>
+        </p-multiSelect></div>
 
 
-       </div>
+    </div>
 
-      <ng-template pTemplate="footer">
-        
-        <p-button icon="pi pi-check" (click)="okclick()" label="update" pAutoFocus [autofocus]="true"></p-button>
-      </ng-template>
-    </p-dialog>
+    <ng-template pTemplate="footer">
+
+      <p-button icon="pi pi-check" (click)="okclick()" label="update" pAutoFocus [autofocus]="true"></p-button>
+    </ng-template>
+  </p-dialog>
 
 
 </div>

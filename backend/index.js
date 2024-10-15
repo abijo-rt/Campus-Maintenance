@@ -5,9 +5,11 @@ const mongoose=require('mongoose')
 const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const { Worklog, WorkerDetails } = require('./model/schema');
-const apiController =require('./controller/apiController')
-const auth=require('./controller/auth')
-
+// const apiController =require('./controller/apiController')
+// const auth=require('./controller/auth')
+// const CardData=require('./controller/cardData')
+// const appdata=require('./controller/appdata')
+const routes = require('./routes/routes')
 app.use(cors());
 
 app.use(cors({
@@ -21,27 +23,24 @@ app.use((req, res, next) => {
     next();
   });
   
-// Define a route to handle GET requests from the client
 
-// app.get('/work', (req, res) => {
-   
-//     res.json({ taskid:1234 });
-// });
+app.use('/', routes);
 
 
 
-app.post('/work',apiController.addWork);
-app.post('/staff',apiController.addStaff);
-app.post('/incharge',auth.addInCharge);
-app.get('/worklog',apiController.getWorkData);
+// app.post('/work',apiController.addWork);
+// app.post('/staff',apiController.addStaff);
+// app.post('/incharge',auth.addInCharge);
 // app.get('/worklog',apiController.getWorkData);
-app.get('/staff',apiController.getWorkerDetails);
-
-app.get('/getstaff',apiController.getstaffname);
-app.post('/worklog',apiController.editwork);
-app.get('/cardinfo',apiController.getcard)
-app.get('/cardtype',apiController.getcardtype)
-app.post('/login',auth.login);
+// app.get('/staff',apiController.getWorkerDetails);
+// app.get('/getstaff',apiController.getstaffname);
+// app.post('/locationData',appdata.addlocation);
+// app.post('/worklog',apiController.editwork);
+// app.get('/cardinfo',apiController.getcard)
+// app.get('/dashcardinfo',CardData.getdashcard)
+// app.get('/cardtype',apiController.getcardtype)
+// app.post('/login',auth.login);
+// app.post('/updateworker',apiController.updateworker);
 
 
 

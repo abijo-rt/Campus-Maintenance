@@ -13,8 +13,6 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 
-// auth-response.interface.ts
-
 
 export class AuthService {
   private currentUserSubject: BehaviorSubject<any>;
@@ -33,7 +31,7 @@ export class AuthService {
 
   login(email: string, password: string) {
 
-    // alert("hi");
+    
     return this.http.post<AuthResponse>(`http://localhost:3000/login`, { email, password })
       .pipe(map(response => {
         console.log(response)

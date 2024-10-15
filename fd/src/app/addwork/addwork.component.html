@@ -1,5 +1,6 @@
 
-<div class="main overflow-y-auto py-3 relative flex flex-col items-center">
+<div class="main overflow-y-auto  relative flex flex-col items-center" style="background-color: #ecf2f6;">
+
   <form (ngSubmit)="onSubmit()">
     <div class="grid grid-cols-2 gap-y-8 justify-items-center content-center griddiv">
       <p-calendar [(ngModel)]="date" [ngModelOptions]="{ standalone: true }" styleClass="calinput" placeholder="Date"

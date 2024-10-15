@@ -43,22 +43,31 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
   styleUrl: './work.component.css',
 })
 export class WorkComponent implements OnInit {
-
+markstatus:string |undefined
   checked: boolean = false;
   editdata!: worklog | undefined;
   activeItem: MenuItem = { label: 'Work Log' };
   remarkstr!:string 
 /**********************************************EDIT OPTIONS                 ******* */
   showDialog(inputElement: number) {
+
+  
+
+
     this.editdata = this.products.find(
       (element) => element.taskid == inputElement
     );
+    if (this.editdata && this.editdata.taskid !== undefined) {
+    if(this.editdata.status==true)this.markstatus="Pending.";
+    else this.markstatus="Completed.";
+    }
     this.visible = true;
   }
 
   oneditdata() {
     if (this.editdata && this.editdata.taskid !== undefined) {
       console.log(this.editdata)
+      
       if ((this.editdata !== undefined) ) {
         if(this.editdata.status == true)this.editdata.status = false;
         else this.editdata.status = true;

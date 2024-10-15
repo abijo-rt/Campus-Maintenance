@@ -25,9 +25,7 @@ export class TabmenuComponent {
     { label: 'Settings', routerLink: '/incharge/settings', icon: 'pi pi-fw pi-cog' },
 
 ]
-  // constructor(private productservice:ProductServiceService){}
   
-  // items=this.productservice.getMenuItem()
   
 
 

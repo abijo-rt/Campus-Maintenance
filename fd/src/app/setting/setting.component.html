@@ -1,49 +1,72 @@
-<div class="mt-16 ">
-
-    <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
-
-    <div class="w-80 h-24 shadow-md rounded-md flex  flex-row justify-between items-center space-x-2 px-2">
-        <div class="h-20 w-20  rounded-sm flex bg-cover bg-slate-400" style="background-image: url(/assets/dp.svg);"></div>
-        <div class="h-20 flex-grow  flex bg-white"></div>
-    </div>
-    <button (click)="showDialog()">
-        Add new In        
-    </button>
-
-
+<div class="h-screen w-screen" style="background-color: #ecf2f6;">
+ 
+  <button (click)="showDialog()" class="h-12 w-40 rounded-md border-2 shadow-md bg-white text-black hover:text-white"> + Add USER</button>
+  <!-- <button (click)="showLocationEdit()" class="h-12 w-40 rounded-md border-2 shadow-md bg-white text-black "> + Add USER</button>
+  <div class="location">
+    <form action="http://localhost:3000/locationData" method="post">
+      <label>New Location</label>
+      <input type="text" id="location" name="name">
+      <button type="submit">add</button>
+  </form>
+  
+  </div> -->
 </div>
 
+
+
+
+
+
+
 <div class="card flex justify-content-center">
-    <!-- <p-button (onClick)="showDialog()" label="Show" /> -->
-    <p-dialog header="Add New Inchrge" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-        <form action="http://localhost:3000/incharge" method="post">
-            <span class="p-text-secondary block my-2">Enter information.</span>
-            <div class="flex align-items-center gap-3 mb-3">
-                <label for="username" class="font-semibold w-6rem">Username</label>
-                <input name="username" id="username" class="flex-auto" autocomplete="off" />
-            </div>
-            <div class="flex align-items-center gap-3 mb-5">
-                <label for="email" class="font-semibold w-6rem">Email</label>
-                <input name="email" id="email" class="flex-auto" autocomplete="off" />
-            </div>
-            <div class="flex align-items-center gap-3 mb-5">
-                <label for="phone" class="font-semibold w-6rem">Phone No</label>
-                <input name="phone" id="phone" class="flex-auto" autocomplete="off" />
-            </div>
-            <div class="flex align-items-center gap-3 mb-5">
-                <label for="type" class="font-semibold w-6rem">Work Type</label>
-                <input name="type" id="type" class="flex-auto" autocomplete="off" />
-            </div>
-            <div class="flex align-items-center gap-3 mb-5">
-                <label for="type" class="font-semibold w-6rem">Role</label>
-                <input name="flag" id="type" class="flex-auto" autocomplete="off" />
-            </div>
-            <span class="my-2">Password is set to the user phone No.</span>
-            <div class="flex justify-between mt-2">
-                <button type="button" class="p-button p-component p-button-secondary" (click)="visible = false">Cancel</button>
-                <button type="submit" class="p-button p-component">Create</button>
-            </div>
-        </form>
-        
-    </p-dialog>
+  <!-- <p-button (onClick)="showDialog()" label="Show" /> -->
+  <p-dialog
+    header="Add New User"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '25rem' }"
+  >
+    <form action="http://localhost:3000/incharge" method="post">
+      <span class="p-text-secondary block mb-5 text-xl">Enter information.</span>
+      <div class="flex justify-between items-center gap-3 mb-3">
+        <label for="username" class="font-semibold w-6rem">Username</label>
+        <input
+          name="username"
+          id="username"
+          class="w-64 flex border-2 rounded-lg "
+          autocomplete="off"
+        />
+      </div>
+      <div class="flex justify-between items-center gap-3 mb-5">
+        <label for="email" class="font-semibold w-6rem">Email</label>
+        <input name="email" id="email" class="w-64 border-2 rounded-lg" autocomplete="off"  />
+      </div>
+      <div class="flex justify-between items-center gap-3 mb-5">
+        <label for="phone" class="font-semibold w-6rem">Phone No</label>
+        <input name="phone" id="phone" class="w-64 border-2 rounded-lg" autocomplete="off" />
+      </div>
+      <div class="flex justify-between items-center gap-3 mb-5">
+        <label for="type" class="font-semibold w-6rem">Work Type</label>
+        <input name="type" id="type" class=" border-2 rounded-lg w-64" autocomplete="off" placeholder="  This applies only for incharge*"/>
+      </div>
+      <div class="flex  space-x-8 justify-center items-center  border-2 rounded-lg p-2 mb-2">
+        <div class="space-x-2">
+        <input type="radio" id="html" name="flag" value="1" />
+         <label for="Incharge">Incharge</label></div>
+      <div class="space-x-2">   <input type="radio" id="css" name="flag" value="0" />  
+        <label for="Admin">Admin</label></div>
+      </div>
+      <span class="">Password is set to the user phone No.</span>
+      <div class="flex justify-between mt-2">
+        <button
+          type="button"
+          class="p-button p-component p-button-secondary"
+          (click)="visible = false"
+        > Cancel
+        </button>
+        <button type="submit" class="p-button p-component">Create</button>
+      </div>
+    </form>
+  </p-dialog>
+  <div class="h-10"></div>
 </div>

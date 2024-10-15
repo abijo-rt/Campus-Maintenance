@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams ,HttpResponse } from '@angular/common/http';
 
 import {
   ProductServiceService,
@@ -78,6 +78,14 @@ export class ApiService {
     return this.http.get<any>('http://localhost:3000/cardinfo',{params:para})
   }
 
+getdashcard(strdate:string){
+  let para=new HttpParams().set('date',strdate);
+  return this.http.get<any>('http://localhost:3000/dashcardinfo',{params:para})
+}
+
+updateworkerdata(update : any):Observable<HttpResponse<any>>{
+  return this.http.post('http://localhost:3000/updateworker',update,{ observe : 'response'})
+}
   
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -102,4 +110,5 @@ export class ApiService {
       'Content-Type': 'application/json',
     }),
   };
+
 }

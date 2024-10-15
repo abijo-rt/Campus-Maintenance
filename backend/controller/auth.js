@@ -23,6 +23,7 @@ exports.addInCharge =async(req,res) =>{
     const newi=await new_incharge.save()
     if(newi){
         res.send(`new ${role} created suceesfully`)
+        console.log(await Incharge.countDocuments({role:'admin'}))
     }
 }catch{
 

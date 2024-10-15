@@ -25,10 +25,12 @@ export class AuthComponent {
     private auth: AuthService,
     private router: Router
   ) {
+
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', Validators.required]
     });
+    
   }
 
   get f() { return this.loginForm.controls; }
@@ -56,7 +58,7 @@ export class AuthComponent {
         },
         error: (err: string) => {
           console.log(err)
-          this.error = err;
+          this.error = "Server not Responding";
         }
       });
   }

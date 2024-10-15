@@ -13,7 +13,7 @@
   ::ng-deep .input {
 padding: 0px;
     font-size: .7rem;
-    width: 200px;
+    width: 230px;
     height: 2rem;
   }
 
@@ -21,13 +21,15 @@ padding: 0px;
   padding: 5px;
   }
 
-  ::ng-deeo .p-multiselect .p-multiselect-label{
+  ::ng-deep .p-multiselect .p-multiselect-label{
     padding: 5px;
+    font-size: 17px;
   }
+
 
    ::ng-deep .phoneinput {
 
-     width: 100px;
+     /* width: ; */
      height: 2rem;
    }
 
@@ -35,7 +37,7 @@ padding: 0px;
   
 input{
 
-  width: 200px;
+  width: 230px;
   height: 2rem;
   color: #4b5563;
 }

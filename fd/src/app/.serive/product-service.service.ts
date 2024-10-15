@@ -14,6 +14,15 @@ export interface worklog {
   remarks: string;
 }
 
+export interface Carddata{
+  totalwork:number,
+  pending:number,
+  completed:number,
+  worker:number,
+  incharge:number,
+  admin:number
+}
+
 export interface options {
   name: string
 }

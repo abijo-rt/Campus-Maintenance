@@ -74,18 +74,25 @@ const dataSchema = new Schema({
 
 });
 
+const carddata=new Schema({
+    date:String,
+    totalwork:Number,
+    completed:Number,
+    pending:Number
+})
+
+
+
+
 const OData = mongoose.model('optiondata', dataSchema);
-
-
-
-
 const Incharge=mongoose.model('incharge',incharge)
 const Worklog = mongoose.model('work_log', worklogSchema);
 const Workinfo = mongoose.model('work_info', workinfo);
 const WorkerDetails = mongoose.model('staff', worker);
 const Workinfotype =mongoose.model('work_info_type',workinfotype)
-
+const Carddata=mongoose.model('carddata',carddata)
 module.exports = {
+    CardData:Carddata,
     WorkerDetails: WorkerDetails,
     OData: OData,
     Worklog: Worklog,
